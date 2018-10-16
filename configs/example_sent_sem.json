@@ -1,0 +1,23 @@
+{
+  "exp_name": "sent_sem",
+  "num_epochs": 40,
+  "num_iter_per_epoch": 30,
+  "learning_rate": 0.001,
+  "batch_size": 64,
+  "max_to_keep":5,
+  "filter_sizes": [2, 3, 4, 5],
+  "dropout": 0.5,
+  "word_dim": 128,
+  "num_filters": 128, 
+  "nwords": 1881,
+  "train_embedding": true,
+  
+  "load_voc": false,
+  "max_sent_length": 20,
+  "voc_path": "/home/shihui/labs_zqh/sent_sim_proj/data/demo/vocab",
+  "word_dict_path": "/home/shihui/labs_zqh/sent_sim_proj/data/demo/word.dict",
+  "tokenized": true,
+  "train_data": "/home/shihui/labs_zqh/sent_sim_proj/data/demo/sentence_sim.train",
+  "dev_data": "/home/shihui/labs_zqh/sent_sim_proj/data/demo/sentence_sim.dev",
+  "shuffle_data": true
+}
