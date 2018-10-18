@@ -23,28 +23,32 @@ def main():
         print("missing or invalid arguments %s" % e)
         exit(0)
 
-    # create the experiments dirs
-    create_dirs([config.summary_dir, config.checkpoint_dir])
-    # create tensorflow session
-    sess = tf.Session()
     # create your data generator
     data = SemDataGenerator(config)
-    
-    #for batch in data.train_data_iter:
-    #    ids, x1, x2, y = zip(*batch)
-    #    print(ids, x1, x2, y)
-    #    break
-    # create an instance of the model you want
-    model = CDSSM(config)
-    # create tensorboard logger
-    logger = Logger(sess, config)
-    # create trainer and pass all the previous components to it
-    trainer = SentSemTrainer(sess, model, data, config, logger)
-    #load model if exists
-    #model.load(sess)
-    # here you train your model
-    trainer.train()
 
+    if args.step == "build_data":
+        print("build data....")
+        data.build_data()
+    elif args.step == "train":
+        # create the experiments dirs
+        create_dirs([config.summary_dir, config.checkpoint_dir])
+        # create tensorflow session
+        sess = tf.Session()
+    
+        # load word2vec
+        config.embedding = data.get_trimmed_glove_vectors() 
+
+        model = CDSSM(config)
+        # create tensorboard logger
+        logger = Logger(sess, config)
+        # create trainer and pass all the previous components to it
+        trainer = SentSemTrainer(sess, model, data, config, logger)
+        #load model if exists
+        #model.load(sess)
+        # here you train your model
+        trainer.train()
+    else:
+        print("no support step!!")
 
 if __name__ == '__main__':
     main()
