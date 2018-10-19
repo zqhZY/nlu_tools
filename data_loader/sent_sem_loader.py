@@ -62,7 +62,7 @@ class SemDataGenerator:
         self.save_word_dict(word_dict)
         # export trimmed glove vector
         print("export trimmed glove")
-        self.export_trimmed_glove_vectors(word_dict, self.config.embedding_path, self.config.trimmed_embedding, self.config.word_dim)
+        self.export_trimmed_glove_vectors(word_dict, self.config.embedding_path, self.config.trimmed_embedding_name, self.config.word_dim)
 
     def export_trimmed_glove_vectors(self, vocab, glove_filename, trimmed_filename, dim):
         """Saves glove vectors in numpy array
@@ -81,7 +81,7 @@ class SemDataGenerator:
                 embedding = [float(x) for x in line[1:]]
                 if word in vocab:
                     word_idx = vocab[word]
-                    embeddings[word_idx] = np.asarray(embedding)
+                    embeddings[word_idx] = np.asarray(embedding, dtype=np.float32)
 
         np.savez_compressed(trimmed_filename, embeddings=embeddings)
 
@@ -94,7 +94,7 @@ class SemDataGenerator:
         """
         try:
             with np.load(self.config.trimmed_embedding) as data:
-                return data["embeddings"]
+                return np.float32(data["embeddings"])
         except IOError:
             raise MyIOError(filename)
 

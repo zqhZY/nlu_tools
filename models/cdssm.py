@@ -100,7 +100,7 @@ class CDSSM(BaseModel):
                                                   dtype=tf.float32, \
                                                   shape=[self.config.nwords, self.config.word_dim])
             else:
-                _word_embedding = tf.get_variable(self.config.embedding,
+                _word_embedding = tf.get_variable( initializer=self.config.embedding,
                                                   name="_word_embedding",
                                                   dtype=tf.float32,
                                                   trainable=self.config.train_embedding)
