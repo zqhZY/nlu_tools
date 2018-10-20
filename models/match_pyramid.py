@@ -38,9 +38,9 @@ class MatchPyramid(BaseModel):
         conv = tf.nn.conv2d(self.cross_with_channel, W, strides=[1, 1, 1, 1], padding="VALID", name="conv")
         conv_out = tf.nn.relu(tf.nn.bias_add(conv, b), name="relu")
         pooled = tf.nn.max_pool(conv_out, ksize=[1, self.config.pool_size[0], self.config.pool_size[1], 1], strides=[1, 1, 1, 1], padding="VALID", name="pool")
-
-        num_filters_all = self.config.num_filters * self.config.max_sent_length * self.config.max_sent_length
-        self.pool_flatted = tf.reshape(self.pooled, [-1, num_filters_all])
+        print("pooled size:", pooled.shape)
+        num_filters_all = self.config.num_filters * (self.config.max_sent_length-2) * (self.config.max_sent_length-2)
+        self.pool_flatted = tf.reshape(pooled, [-1, num_filters_all])
         print("sem_feature size:", self.pool_flatted.shape)
 
         # add dropout

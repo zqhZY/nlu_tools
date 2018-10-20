@@ -4,7 +4,7 @@ import sys
 sys.path.extend(['..'])
 
 from data_loader.sent_sem_loader import SemDataGenerator 
-from models.cdssm import CDSSM
+from models.match_pyramid import MatchPyramid
 from trainers.sent_sem_trainer import SentSemTrainer
 from utils.config import process_config
 from utils.dirs import create_dirs
@@ -38,7 +38,7 @@ def main():
         # load word2vec
         config.embedding = data.get_trimmed_glove_vectors() 
 
-        model = CDSSM(config)
+        model = MatchPyramid(config)
         # create tensorboard logger
         logger = Logger(sess, config)
         # create trainer and pass all the previous components to it
