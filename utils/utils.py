@@ -8,5 +8,10 @@ def get_args():
         metavar='C',
         default='None',
         help='The Configuration file')
+    argparser.add_argument(
+        '-s', '--step',
+        metavar='S',
+        default='train',
+        help='The Configuration file')
     args = argparser.parse_args()
     return args

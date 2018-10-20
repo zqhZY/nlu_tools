@@ -15,12 +15,12 @@
   "load_voc": false,
   "max_sent_length": 20,
   "embedding_path": "/home/shihui/data/glove/glove.840B.300d.txt",
-  "trimmed_embedding_name": "/home/shihui/labs_zqh/sent_sem_match_tf/data/demo/trimed_embed.vec",
-  "trimmed_embedding": "/home/shihui/labs_zqh/sent_sem_match_tf/data/demo/trimed_embed.vec.npz",
-  "voc_path": "/home/shihui/labs_zqh/sent_sem_match_tf/data/demo/vocab",
-  "word_dict_path": "/home/shihui/labs_zqh/sent_sem_match_tf/data/demo/word.dict",
+  "trimmed_embedding_name": "../data/demo/trimed_embed.vec",
+  "trimmed_embedding": "../data/demo/trimed_embed.vec.npz",
+  "voc_path": "../data/demo/vocab",
+  "word_dict_path": "../data/demo/word.dict",
   "tokenized": true,
-  "train_data": "/home/shihui/labs_zqh/sent_sem_match_tf/data/demo/sentence_sim.train",
-  "dev_data": "/home/shihui/labs_zqh/sent_sem_match_tf/data/demo/sentence_sim.dev",
+  "train_data": "../data/demo/sentence_sim.train",
+  "dev_data": "../data/demo/sentence_sim.dev",
   "shuffle_data": true
 }

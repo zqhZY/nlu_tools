@@ -44,10 +44,16 @@ class SemDataGenerator:
                                                self.config.batch_size, \
                                                self.config.num_epochs, \
                                                self.config.shuffle_data)
-        self.dev_data_iter = self.batch_iter(list(zip(self.ids_dev, self.tx1s_dev, self.tx2s_dev, self.labels_dev)), \
-                                             self.config.batch_size, \
-                                             self.config.num_epochs, \
-                                             False)
+        # self.dev_data_iter = self.batch_iter(list(zip(self.ids_dev, self.tx1s_dev, self.tx2s_dev, self.labels_dev)), \
+        #                                      self.config.batch_size, \
+        #                                      self.config.num_epochs, \
+        #                                      False)
+
+    def get_dev_iter(self):
+        return self.batch_iter(list(zip(self.ids_dev, self.tx1s_dev, self.tx2s_dev, self.labels_dev)), \
+                               self.config.batch_size, \
+                               1, \
+                               False)
 
     def build_data(self):
         """build offline data"""
@@ -96,7 +102,7 @@ class SemDataGenerator:
             with np.load(self.config.trimmed_embedding) as data:
                 return np.float32(data["embeddings"])
         except IOError:
-            raise MyIOError(filename)
+            raise MyIOError(self.config.trimmed_embedding)
 
     def get_word_dict(self):
         return self.vocab_processor.vocabulary_._mapping
@@ -128,7 +134,7 @@ class SemDataGenerator:
         data = np.array(data)
         data_size = len(data)
         num_batches_per_epoch = int((len(data)-1)/batch_size) + 1
-        for epoch in range(num_epochs+1):
+        for epoch in range(num_epochs):
             # Shuffle the data at each epoch
             print("current epoch is {}".format(epoch))
             if shuffle:
