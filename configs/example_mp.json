@@ -1,6 +1,6 @@
 {
-  "exp_name": "sent_sem",
-  "num_epochs": 40,
+  "exp_name": "sent_sem_mp",
+  "num_epochs": 400,
   "num_iter_per_epoch": 30,
   "learning_rate": 0.001,
   "batch_size": 64,

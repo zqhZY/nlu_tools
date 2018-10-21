@@ -71,7 +71,9 @@ class CDSSM(BaseModel):
         # network architecture
         with tf.name_scope("output"):
             d0 = tf.layers.dense(self.f_drop, 512, activation=tf.nn.relu, name="dense0")
+            d0 = tf.nn.dropout(d0, self.config.dropout)
             d1 = tf.layers.dense(d0, 128, activation=tf.nn.relu, name="dense1")
+            d1 = tf.nn.dropout(d1, self.config.dropout)
             d2 = tf.layers.dense(d1, 1, name="dense2")
 
         d2 = tf.squeeze(d2)

@@ -1,9 +1,9 @@
 {
   "exp_name": "sent_sem",
-  "num_epochs": 40,
+  "num_epochs": 800,
   "num_iter_per_epoch": 30,
   "learning_rate": 0.001,
-  "batch_size": 64,
+  "batch_size": 128,
   "max_to_keep":5,
   "filter_sizes": [2, 3, 4, 5],
   "dropout": 0.5,
@@ -12,8 +12,8 @@
   "nwords": 1881,
   "train_embedding": false,
   
-  "load_voc": false,
-  "max_sent_length": 20,
+  "load_voc": true,
+  "max_sent_length": 26,
   "embedding_path": "/home/shihui/data/glove/glove.840B.300d.txt",
   "trimmed_embedding_name": "../data/demo/trimed_embed.vec",
   "trimmed_embedding": "../data/demo/trimed_embed.vec.npz",

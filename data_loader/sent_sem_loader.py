@@ -1,4 +1,5 @@
 from tensorflow.contrib import learn
+import re
 import numpy as np
 import jieba
 
@@ -22,7 +23,7 @@ class SemDataGenerator:
             self.vocab_processor = learn.preprocessing.VocabularyProcessor.restore(self.config.voc_path)
         else:
             self.vocab_processor = learn.preprocessing.VocabularyProcessor(self.config.max_sent_length)
-            self.vocab_processor.fit(self.tx1s_train_raw + self.tx2s_train_raw)
+            self.vocab_processor.fit(self.tx1s_train_raw + self.tx2s_train_raw + self.tx1s_dev_raw + self.tx2s_dev_raw)
             self.vocab_processor.save(self.config.voc_path)
             # save word dict
             self.save_word_dict(self.vocab_processor.vocabulary_._mapping)
@@ -54,13 +55,21 @@ class SemDataGenerator:
                                self.config.batch_size, \
                                1, \
                                False)
+    def data_preproces(self, text):
+        pattern = "[,.]"
+        pattern2 = "(it's)|(It's)"
+    
+        text = re.sub(pattern, "", text)
+        text = re.sub(pattern2, "it is", text)
+        text = text.lower()
+        return text
 
     def build_data(self):
         """build offline data"""
         # save word processor
         print("fit vocab_processor")
         self.vocab_processor = learn.preprocessing.VocabularyProcessor(self.config.max_sent_length)
-        self.vocab_processor.fit(self.tx1s_train_raw + self.tx2s_train_raw)
+        self.vocab_processor.fit(self.tx1s_train_raw + self.tx2s_train_raw + self.tx1s_dev_raw + self.tx2s_dev_raw)
         self.vocab_processor.save(self.config.voc_path)
         # save word dict
         print("save word dict")
@@ -122,8 +131,8 @@ class SemDataGenerator:
             for line in f:
                 tokens = line.strip().split("\t")
                 ids.append([tokens[0]])
-                tx1s.append(tokens[1])
-                tx2s.append(tokens[2])
+                tx1s.append(self.data_preproces(tokens[1]))
+                tx2s.append(self.data_preproces(tokens[2]))
                 labels.append([float(tokens[3])])
         return ids, tx1s, tx2s, np.array(labels)
         
