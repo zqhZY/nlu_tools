@@ -14,7 +14,7 @@ class CDSSM(BaseModel):
         # input 
         self.x1 = tf.placeholder(tf.int32, name="X1", shape=[None, self.config.max_sent_length])
         self.x2 = tf.placeholder(tf.int32, name="X2", shape=[None, self.config.max_sent_length])
-        self.y = tf.placeholder(tf.float32, shape=[None])
+        self.y = tf.placeholder(tf.float32, shape=[None, 2])
 
         # build self.embedding
         self._embedding = self.add_word_embedding()
@@ -74,18 +74,21 @@ class CDSSM(BaseModel):
             d0 = tf.nn.dropout(d0, self.config.dropout)
             d1 = tf.layers.dense(d0, 128, activation=tf.nn.relu, name="dense1")
             d1 = tf.nn.dropout(d1, self.config.dropout)
-            d2 = tf.layers.dense(d1, 1, name="dense2")
+            d2 = tf.layers.dense(d1, 2, name="dense2")
 
         d2 = tf.squeeze(d2)
         print(d2)
         
         with tf.name_scope("loss"):
-            self.cost = tf.reduce_mean(tf.losses.mean_squared_error(labels=self.y, predictions=d2))
+            if self.config.loss == "mse":
+                self.cost = tf.reduce_mean(tf.losses.mean_squared_error(labels=self.y, predictions=d2))
+            else:
+                self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=self.y, logits=d2))
+                correct_prediction = tf.equal(tf.argmax(d2, 1), tf.argmax(self.y, 1))
+                self.accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
             self.train_step = tf.train.AdamOptimizer(self.config.learning_rate).minimize(self.cost,
                                                                                          global_step=self.global_step_tensor)
-            # computer Pearson 
-            #correct_prediction = tf.equal(d2, self.y)
-            #self.accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+
 
     def add_word_embedding(self):
         """

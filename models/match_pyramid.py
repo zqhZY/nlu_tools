@@ -14,7 +14,7 @@ class MatchPyramid(BaseModel):
         # input 
         self.x1 = tf.placeholder(tf.int32, name="X1", shape=[None, self.config.max_sent_length])
         self.x2 = tf.placeholder(tf.int32, name="X2", shape=[None, self.config.max_sent_length])
-        self.y = tf.placeholder(tf.float32, shape=[None])
+        self.y = tf.placeholder(tf.float32, shape=[None, 2])
 
         # build self.embedding
         self._embedding = self.add_word_embedding()
@@ -32,14 +32,14 @@ class MatchPyramid(BaseModel):
 
         # add conv+maxpooling
         filter_shape = [self.config.filter_size[0], self.config.filter_size[1], 1, self.config.num_filters]
-        print(filter_shape)
+        print("filter shape: ", filter_shape)
         W = tf.Variable(tf.truncated_normal(filter_shape, stddev=0.1), name="W")
         b = tf.Variable(tf.constant(0.1, shape=[self.config.num_filters]), name="b")
         conv = tf.nn.conv2d(self.cross_with_channel, W, strides=[1, 1, 1, 1], padding="VALID", name="conv")
         conv_out = tf.nn.relu(tf.nn.bias_add(conv, b), name="relu")
         pooled = tf.nn.max_pool(conv_out, ksize=[1, self.config.pool_size[0], self.config.pool_size[1], 1], strides=[1, 1, 1, 1], padding="VALID", name="pool")
         print("pooled size:", pooled.shape)
-        num_filters_all = self.config.num_filters * (self.config.max_sent_length-2) * (self.config.max_sent_length-2)
+        num_filters_all = self.config.num_filters * (self.config.max_sent_length-6) * (self.config.max_sent_length-6)
         self.pool_flatted = tf.reshape(pooled, [-1, num_filters_all])
         print("sem_feature size:", self.pool_flatted.shape)
 
@@ -49,20 +49,24 @@ class MatchPyramid(BaseModel):
 
         # network architecture
         with tf.name_scope("output"):
-            d0 = tf.layers.dense(self.f_drop, 512, activation=tf.nn.relu, name="dense0")
-            d1 = tf.layers.dense(d0, 128, activation=tf.nn.relu, name="dense1")
-            d2 = tf.layers.dense(d1, 1, name="dense2")
+            d0 = tf.layers.dense(self.f_drop, self.config.dense_size1, activation=tf.nn.relu, name="dense0")
+            #d0_drop = tf.nn.dropout(d0, self.config.dropout)
+            #d1 = tf.layers.dense(d0, 128, activation=tf.nn.relu, name="dense1")
+            d2 = tf.layers.dense(d0, 2, name="dense2")
 
         d2 = tf.squeeze(d2)
-        print(d2)
+        #print(d2)
         
         with tf.name_scope("loss"):
-            self.cost = tf.reduce_mean(tf.losses.mean_squared_error(labels=self.y, predictions=d2))
+            if self.config.loss == "mse":
+                self.cost = tf.reduce_mean(tf.losses.mean_squared_error(labels=self.y, predictions=d2))
+            else:
+                self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=self.y, logits=d2))
+                correct_prediction = tf.equal(tf.argmax(d2, 1), tf.argmax(self.y, 1))
+                self.accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
             self.train_step = tf.train.AdamOptimizer(self.config.learning_rate).minimize(self.cost,
                                                                                          global_step=self.global_step_tensor)
-            # computer Pearson 
-            #correct_prediction = tf.equal(d2, self.y)
-            #self.accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+
 
     def add_word_embedding(self):
         """
