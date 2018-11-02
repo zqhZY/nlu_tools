@@ -3,7 +3,7 @@ import sys
 
 sys.path.extend(['..'])
 
-from data_loader.sent_sem_loader import SemDataGenerator 
+from data_loader.sent_sem_loader import SemDataGenerator, MSRPGenerator, ATECGenerator 
 from models.match_pyramid import MatchPyramid
 from trainers.sent_sem_trainer import SentSemTrainer
 from utils.config import process_config
@@ -24,7 +24,9 @@ def main():
         exit(0)
 
     # create your data generator
-    data = SemDataGenerator(config)
+    #data = SemDataGenerator(config)
+    #data = MSRPGenerator(config)
+    data = ATECGenerator(config)
 
     if args.step == "build_data":
         print("build data....")

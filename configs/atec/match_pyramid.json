@@ -1,0 +1,27 @@
+{
+  "exp_name": "atec_mp",
+  "loss": "softmax",
+  "num_epochs": 40,
+  "learning_rate": 0.0001,
+  "batch_size": 128,
+  "max_to_keep":5,
+  "filter_size": [4, 4],
+  "pool_size": [4, 4],
+  "dense_size1": 128,
+  "dropout": 1.0,
+  "word_dim": 200,
+  "num_filters": 128, 
+  "train_embedding": false,
+  
+  "load_voc": true,
+  "max_sent_length": 26,
+  "min_frequency": 0,
+  "embedding_path": "/home/shihui/data/tencent_embed/Tencent_AILab_ChineseEmbedding.txt",
+  "trimmed_embedding_name": "../data/msrp/trimed_embed_tencent.vec",
+  "trimmed_embedding": "../data/msrp/trimed_embed_tencent.vec.npz",
+  "voc_path": "../data/atec/vocab",
+  "word_dict_path": "../data/atec/word.dict",
+  "train_data": "../data/atec/atec_train_raw.csv",
+  "dev_data": "../data/atec/atec_valid_raw.csv",
+  "shuffle_data": true
+}

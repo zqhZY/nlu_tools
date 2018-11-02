@@ -12,17 +12,17 @@ class SemDataGenerator:
         self.ids_dev, self.tx1s_dev_raw, self.tx2s_dev_raw, self.labels_dev = self.load_data(self.config.dev_data, True)
 
         # tokenize data
-        if self.config.tokenized is not True:
-            self.tx1s_train_raw = [" ".join(jieba.lcut(x)) for x in self.tx1s_train_raw]
-            self.tx2s_train_raw = [" ".join(jieba.lcut(x)) for x in self.tx2s_train_raw]
-            self.tx1s_dev_raw = [" ".join(jieba.lcut(x)) for x in self.tx1s_dev_raw]
-            self.tx2s_dev_raw = [" ".join(jieba.lcut(x)) for x in self.tx2s_dev_raw]
+        #if self.config.tokenized is not True:
+        #    self.tx1s_train_raw = [" ".join(jieba.lcut(x)) for x in self.tx1s_train_raw]
+        #    self.tx2s_train_raw = [" ".join(jieba.lcut(x)) for x in self.tx2s_train_raw]
+        #    self.tx1s_dev_raw = [" ".join(jieba.lcut(x)) for x in self.tx1s_dev_raw]
+        #    self.tx2s_dev_raw = [" ".join(jieba.lcut(x)) for x in self.tx2s_dev_raw]
 
         # build voc dict
         if self.config.load_voc:
             self.vocab_processor = learn.preprocessing.VocabularyProcessor.restore(self.config.voc_path)
         else:
-            self.vocab_processor = learn.preprocessing.VocabularyProcessor(self.config.max_sent_length)
+            self.vocab_processor = learn.preprocessing.VocabularyProcessor(self.config.max_sent_length, min_frequency=self.config.min_frequency)
             self.vocab_processor.fit(self.tx1s_train_raw + self.tx2s_train_raw + self.tx1s_dev_raw + self.tx2s_dev_raw)
             self.vocab_processor.save(self.config.voc_path)
             # save word dict
@@ -55,8 +55,9 @@ class SemDataGenerator:
                                self.config.batch_size, \
                                1, \
                                False)
+
     def data_preproces(self, text):
-        pattern = "[,.]"
+        pattern = "[,.'\"]"
         pattern2 = "(it's)|(It's)"
     
         text = re.sub(pattern, "", text)
@@ -68,7 +69,7 @@ class SemDataGenerator:
         """build offline data"""
         # save word processor
         print("fit vocab_processor")
-        self.vocab_processor = learn.preprocessing.VocabularyProcessor(self.config.max_sent_length)
+        self.vocab_processor = learn.preprocessing.VocabularyProcessor(self.config.max_sent_length, min_frequency=self.config.min_frequency)
         self.vocab_processor.fit(self.tx1s_train_raw + self.tx2s_train_raw + self.tx1s_dev_raw + self.tx2s_dev_raw)
         self.vocab_processor.save(self.config.voc_path)
         # save word dict
@@ -76,7 +77,7 @@ class SemDataGenerator:
         word_dict = self.vocab_processor.vocabulary_._mapping
         self.save_word_dict(word_dict)
         # export trimmed glove vector
-        print("export trimmed glove")
+        print("export trimmed embedding")
         self.export_trimmed_glove_vectors(word_dict, self.config.embedding_path, self.config.trimmed_embedding_name, self.config.word_dim)
 
     def export_trimmed_glove_vectors(self, vocab, glove_filename, trimmed_filename, dim):
@@ -155,4 +156,55 @@ class SemDataGenerator:
                 start_index = batch_num * batch_size
                 end_index = min((batch_num + 1) * batch_size, data_size)
                 yield shuffled_data[start_index:end_index]
+
+
+class MSRPGenerator(SemDataGenerator):
+    def __init__(self, config):
+        super(MSRPGenerator, self).__init__(config)
+
+    def load_data(self, file_name, with_label=True):
+        
+        ids = []
+        tx1s = []
+        tx2s = []
+        labels = []
+        head = True
+        with open(file_name) as f:
+            for line in f:
+                if head:
+                    head = False
+                    continue
+                tokens = line.strip().split("\t")
+                ids.append([tokens[1], tokens[2]])
+                tx1s.append(self.data_preproces(tokens[3]))
+                tx2s.append(self.data_preproces(tokens[4]))
+                if int(tokens[0]) == 0:
+                    labels.append([0, 1])
+                else:
+                    labels.append([1, 0])
+
+        return ids, tx1s, tx2s, np.array(labels)
+
+class ATECGenerator(SemDataGenerator):
+    def __init__(self, config):
+        super(ATECGenerator, self).__init__(config)
+
+    def load_data(self, file_name, with_label=True):
+        
+        ids = []
+        tx1s = []
+        tx2s = []
+        labels = []
+        with open(file_name) as f:
+            for line in f:
+                tokens = line.strip().split("\t")
+                ids.append([tokens[1], tokens[2]])
+                tx1s.append(self.data_preproces(tokens[3]))
+                tx2s.append(self.data_preproces(tokens[4]))
+                if int(tokens[0]) == 0:
+                    labels.append([0, 1])
+                else:
+                    labels.append([1, 0])
+
+        return ids, tx1s, tx2s, np.array(labels)
 
