@@ -5,7 +5,7 @@ Sentence semantics matching in tensorflow with simple software architecture.
 
 
 ### build data
-Run command in ./main directory
+Run command in ./main directory, but you may can skip this process since there is preprocessed data in ./data/xx
 ```
 python sent_sem_cdssm.py -c ../configs/atec/cdssm.json -s build_data
 ```
