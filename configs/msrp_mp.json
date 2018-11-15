@@ -1,0 +1,27 @@
+{
+  "exp_name": "msrp_mp",
+  "loss": "softmax",
+  "num_epochs": 4000,
+  "learning_rate": 0.001,
+  "batch_size": 64,
+  "max_to_keep":5,
+  "filter_size": [4, 4],
+  "pool_size": [4, 4],
+  "dropout": 0.5,
+  "word_dim": 300,
+  "num_filters": 8, 
+  "train_embedding": false,
+  
+  "load_voc": true,
+  "max_sent_length": 30,
+  "min_frequency": 2,
+  "embedding_path": "/home/shihui/data/glove/glove.840B.300d.txt",
+  "trimmed_embedding_name": "../data/msrp/trimed_embed.vec",
+  "trimmed_embedding": "../data/msrp/trimed_embed.vec.npz",
+  "voc_path": "../data/msrp/vocab",
+  "word_dict_path": "../data/msrp/word.dict",
+  "tokenized": true,
+  "train_data": "../data/msrp/msr_paraphrase_train.txt",
+  "dev_data": "../data/msrp/msr_paraphrase_test.txt",
+  "shuffle_data": true
+}

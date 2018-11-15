@@ -1,12 +1,13 @@
 from base.base_model import BaseModel
 from models.blocks import _feedforward_block, _bilstm_block 
+from models.layers.transformer import TransformerEncoder 
 from utils.utils import print_shape
 import tensorflow as tf
 
 
-class ESIM(BaseModel):
+class SelfAttESIM(BaseModel):
     def __init__(self, config):
-        super(ESIM, self).__init__(config)
+        super(SelfAttESIM, self).__init__(config)
         self.build_model()
         self.init_saver()
 
@@ -42,16 +43,12 @@ class ESIM(BaseModel):
         #self.embed2 = tf.nn.dropout(self.embed2, self.config.dropout)
         #self.embed2 = tf.expand_dims(self.embed2, -1)
         print("word embedd2 shape", self.embed2.shape)
-
+        attention_block = TransformerEncoder(self.config, train=True) 
         with tf.variable_scope(scope):
             # a_bar = BiLSTM(a, i) (1)
             # b_bar = BiLSTM(b, i) (2)
-            if self.config.using_actual_len:
-                outputs_x1, final_states_x1 = _bilstm_block(self.embed1, self.config.hidden_size, 'bilstm', seq_len=self.x1_mask)
-                outputs_x2, final_states_x2 = _bilstm_block(self.embed2, self.config.hidden_size, 'bilstm', seq_len=self.x2_mask, reuse=True)
-            else:
-                outputs_x1, final_states_x1 = _bilstm_block(self.embed1, self.config.hidden_size, 'bilstm',self.config.dropout)
-                outputs_x2, final_states_x2 = _bilstm_block(self.embed2, self.config.hidden_size, 'bilstm', self.config.dropout, reuse=True)
+            outputs_x1  = attention_block(self.x1, self.embed1)
+            outputs_x2  = attention_block(self.x2, self.embed2)
 
             a_bar = tf.concat(outputs_x1, axis=2)
             b_bar = tf.concat(outputs_x2, axis=2)

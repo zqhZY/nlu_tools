@@ -3,7 +3,7 @@
   "num_epochs": 800,
   "num_iter_per_epoch": 30,
   "learning_rate": 0.001,
-  "batch_size": 128,
+  "batch_size": 64,
   "max_to_keep":5,
   "filter_sizes": [2, 3, 4, 5],
   "dropout": 0.5,

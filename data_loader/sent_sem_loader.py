@@ -8,8 +8,8 @@ class SemDataGenerator:
     def __init__(self, config):
         self.config = config
         # load data here
-        self.ids_train, self.tx1s_train_raw, self.tx2s_train_raw, self.labels_train = self.load_data(self.config.train_data, True)
-        self.ids_dev, self.tx1s_dev_raw, self.tx2s_dev_raw, self.labels_dev = self.load_data(self.config.dev_data, True)
+        self.ids_train, self.tx1s_train_raw, self.tx2s_train_raw, self.labels_train, self.tx1_len, self.tx2_len = self.load_data(self.config.train_data, True)
+        self.ids_dev, self.tx1s_dev_raw, self.tx2s_dev_raw, self.labels_dev, self.tx1_len_dev, self.tx2_len_dev = self.load_data(self.config.dev_data, True)
 
         # tokenize data
         #if self.config.tokenized is not True:
@@ -41,7 +41,7 @@ class SemDataGenerator:
         self.num_batches_per_epoch_dev = int((len(self.tx1s_dev)-1)/self.config.batch_size) + 1
 
         # build data iter
-        self.train_data_iter = self.batch_iter(list(zip(self.ids_train, self.tx1s_train, self.tx2s_train, self.labels_train)), \
+        self.train_data_iter = self.batch_iter(list(zip(self.ids_train, self.tx1s_train, self.tx2s_train, self.labels_train, self.tx1_len, self.tx2_len)), \
                                                self.config.batch_size, \
                                                self.config.num_epochs, \
                                                self.config.shuffle_data)
@@ -51,7 +51,7 @@ class SemDataGenerator:
         #                                      False)
 
     def get_dev_iter(self):
-        return self.batch_iter(list(zip(self.ids_dev, self.tx1s_dev, self.tx2s_dev, self.labels_dev)), \
+        return self.batch_iter(list(zip(self.ids_dev, self.tx1s_dev, self.tx2s_dev, self.labels_dev, self.tx1_len_dev, self.tx2_len_dev)), \
                                self.config.batch_size, \
                                1, \
                                False)
@@ -128,14 +128,24 @@ class SemDataGenerator:
         tx1s = []
         tx2s = []
         labels = []
+        tx1_lens = []
+        tx2_lens = []
         with open(file_name) as f:
             for line in f:
                 tokens = line.strip().split("\t")
                 ids.append([tokens[0]])
                 tx1s.append(self.data_preproces(tokens[1]))
                 tx2s.append(self.data_preproces(tokens[2]))
+                t1_len = len(tokens[1].split())
+                t2_len = len(tokens[2].split())
+                if t1_len > self.config.max_sent_length:
+                    t1_len = self.config.max_sent_length
+                if t2_len > self.config.max_sent_length:
+                    t2_len = self.config.max_sent_length
+                tx1_lens.append(t1_len)
+                tx2_lens.append(t2_len)
                 labels.append([float(tokens[3])])
-        return ids, tx1s, tx2s, np.array(labels)
+        return ids, tx1s, tx2s, np.array(labels), np.array(tx1_lens), np.array(tx2_lens)
         
     def batch_iter(self, data, batch_size, num_epochs, shuffle=True):
         """
@@ -169,6 +179,8 @@ class MSRPGenerator(SemDataGenerator):
         tx2s = []
         labels = []
         head = True
+        tx1_lens = []
+        tx2_lens = []
         with open(file_name) as f:
             for line in f:
                 if head:
@@ -178,12 +190,20 @@ class MSRPGenerator(SemDataGenerator):
                 ids.append([tokens[1], tokens[2]])
                 tx1s.append(self.data_preproces(tokens[3]))
                 tx2s.append(self.data_preproces(tokens[4]))
+                t1_len = len(tokens[1].split())
+                t2_len = len(tokens[2].split())
+                if t1_len > self.config.max_sent_length:
+                    t1_len = self.config.max_sent_length
+                if t2_len > self.config.max_sent_length:
+                    t2_len = self.config.max_sent_length
+                tx1_lens.append(t1_len)
+                tx2_lens.append(t2_len)
                 if int(tokens[0]) == 0:
                     labels.append([0, 1])
                 else:
                     labels.append([1, 0])
 
-        return ids, tx1s, tx2s, np.array(labels)
+        return ids, tx1s, tx2s, np.array(labels), np.array(tx1_lens), np.array(tx2_lens)
 
 class ATECGenerator(SemDataGenerator):
     def __init__(self, config):
@@ -195,16 +215,26 @@ class ATECGenerator(SemDataGenerator):
         tx1s = []
         tx2s = []
         labels = []
+        tx1_lens = []
+        tx2_lens = []
         with open(file_name) as f:
             for line in f:
                 tokens = line.strip().split("\t")
                 ids.append([tokens[1], tokens[2]])
                 tx1s.append(self.data_preproces(tokens[3]))
                 tx2s.append(self.data_preproces(tokens[4]))
+                t1_len = len(tokens[1].split())
+                t2_len = len(tokens[2].split())
+                if t1_len > self.config.max_sent_length:
+                    t1_len = self.config.max_sent_length
+                if t2_len > self.config.max_sent_length:
+                    t2_len = self.config.max_sent_length
+                tx1_lens.append(t1_len)
+                tx2_lens.append(t2_len)
                 if int(tokens[0]) == 0:
                     labels.append([0, 1])
                 else:
                     labels.append([1, 0])
 
-        return ids, tx1s, tx2s, np.array(labels)
+        return ids, tx1s, tx2s, np.array(labels), np.array(tx1_lens, dtype=np.int32), np.array(tx2_lens, dtype=np.int32)
 

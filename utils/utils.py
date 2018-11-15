@@ -15,3 +15,11 @@ def get_args():
         help='The Configuration file')
     args = argparser.parse_args()
     return args
+
+# print tensor shape
+def print_shape(varname, var):
+    """
+    :param varname: tensor name
+    :param var: tensor variable
+    """
+    print('{0} : {1}'.format(varname, var.get_shape()))

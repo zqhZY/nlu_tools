@@ -78,6 +78,11 @@ class CDSSM(BaseModel):
 
         d2 = tf.squeeze(d2)
         print(d2)
+        #global_step = tf.Variable(0, trainable=False)
+        #learning_rate = tf.train.exponential_decay(self.config.learning_rate, self.global_step_tensor, decay_steps=10, decay_rate=0.9)
+        #boundaries = [3205, 6410]
+        #values = [0.01, 0.001, 0.0001]
+        #learning_rate = tf.train.piecewise_constant(global_step, boundaries, values)
         
         with tf.name_scope("loss"):
             if self.config.loss == "mse":
@@ -86,8 +91,7 @@ class CDSSM(BaseModel):
                 self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=self.y, logits=d2))
                 correct_prediction = tf.equal(tf.argmax(d2, 1), tf.argmax(self.y, 1))
                 self.accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-            self.train_step = tf.train.AdamOptimizer(self.config.learning_rate).minimize(self.cost,
-                                                                                         global_step=self.global_step_tensor)
+            self.train_step = tf.train.AdamOptimizer(self.config.learning_rate).minimize(self.cost, global_step=self.global_step_tensor)
 
 
     def add_word_embedding(self):

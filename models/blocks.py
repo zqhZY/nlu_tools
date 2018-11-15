@@ -26,6 +26,7 @@ def _bilstm_block(inputs, num_units, scope, dropout_keep_prob=1.0, seq_len=None,
        :param scope: scope name
        :output:  tuple (outputs, output_states) where outputs is a tuple (output_fw, output_bw)
     """
+    #print(seq_len)
     with tf.variable_scope(scope, reuse=reuse):
         # reuse lstm cell for fw and bw cell
         lstm_cell = LSTMCell(num_units=num_units)

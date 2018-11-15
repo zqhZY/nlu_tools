@@ -66,7 +66,7 @@ def main():
             create_dirs([config.summary_dir, config.checkpoint_dir])
             sess = tf.Session()
             config.embedding = data.get_trimmed_glove_vectors() 
-            model = CDSSM(config)
+            model = ESIM(config)
             logger = Logger(sess, config)
             trainer = SentSemTrainer(sess, model, data, config, logger)
             trainer.train()
