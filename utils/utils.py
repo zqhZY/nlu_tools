@@ -1,4 +1,5 @@
 import argparse
+import sys
 
 
 def get_args():
@@ -23,3 +24,19 @@ def print_shape(varname, var):
     :param var: tensor variable
     """
     print('{0} : {1}'.format(varname, var.get_shape()))
+
+
+def import_class(import_str):
+    mod_str, _sep, class_str = import_str.rpartition('.')
+    __import__(mod_str)
+    try:
+        return getattr(sys.modules[mod_str], class_str)
+    except AttributeError:
+        raise ImportError('Class %s cannot be found (%s)' %
+                (class_str,
+                    traceback.format_exception(*sys.exc_info())))
+
+
+def import_object(import_str, *args, **kwargs):
+    return import_class(import_str)(*args, **kwargs)
+

@@ -1,4 +1,9 @@
 {
+  "task_config": {
+    "name": "models.esim.ESIM", 
+    "trainer": "trainers.sent_sem_trainer.SentSemTrainer",
+    "data_generator": "data_loader.sent_sem_loader.ATECGenerator"
+  },
   "exp_name": "atec_esim",
   "loss": "softmax",
   "num_epochs": 100,
