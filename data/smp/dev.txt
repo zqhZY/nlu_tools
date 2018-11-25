@@ -1,0 +1,3082 @@
+{
+  "0": {
+    "query": "毛泽东的诗哦。",
+    "label": "poetry"
+  },
+  "1": {
+    "query": "有房有车吗微笑",
+    "label": "chat"
+  },
+  "2": {
+    "query": "2013年亚洲冠军联赛恒广州恒大比赛时间。",
+    "label": "match"
+  },
+  "3": {
+    "query": "若相惜不弃下一句是什么？",
+    "label": "poetry"
+  },
+  "4": {
+    "query": "苹果翻译成英语",
+    "label": "translation"
+  },
+  "5": {
+    "query": "翻译光大银行",
+    "label": "translation"
+  },
+  "6": {
+    "query": "哪天的？",
+    "label": "chat"
+  },
+  "7": {
+    "query": "无锡到阜阳怎么坐汽车？",
+    "label": "bus"
+  },
+  "8": {
+    "query": "孜然排骨怎么做？",
+    "label": "cookbook"
+  },
+  "9": {
+    "query": "娃咋么杨你因为呵呵演完呀不到你",
+    "label": "chat"
+  },
+  "10": {
+    "query": "你现在在做什么啊",
+    "label": "chat"
+  },
+  "11": {
+    "query": "今天我要去逛街用英语说",
+    "label": "translation"
+  },
+  "12": {
+    "query": "查南京天气",
+    "label": "weather"
+  },
+  "13": {
+    "query": "做花生拌豆腐需要什么材料啊？",
+    "label": "cookbook"
+  },
+  "14": {
+    "query": "泰山石油股票",
+    "label": "stock"
+  },
+  "15": {
+    "query": "下周有什么好看的恐怖电影",
+    "label": "epg"
+  },
+  "16": {
+    "query": "干啥呢",
+    "label": "chat"
+  },
+  "17": {
+    "query": "能告诉我徐乐乐的信息吗",
+    "label": "chat"
+  },
+  "18": {
+    "query": "这有什么厉害的",
+    "label": "chat"
+  },
+  "19": {
+    "query": "频道管理",
+    "label": "tvchannel"
+  },
+  "20": {
+    "query": "赵柏田鸡怎么做啊？",
+    "label": "cookbook"
+  },
+  "21": {
+    "query": "你咋不上天呢",
+    "label": "chat"
+  },
+  "22": {
+    "query": "搜索岳飞的诗满江红。",
+    "label": "poetry"
+  },
+  "23": {
+    "query": "摸啥",
+    "label": "chat"
+  },
+  "24": {
+    "query": "查询下北京首创的股票",
+    "label": "stock"
+  },
+  "25": {
+    "query": "今天什么天气",
+    "label": "chat"
+  },
+  "26": {
+    "query": "请帮我调频100.8梧州人民广播电台",
+    "label": "radio"
+  },
+  "27": {
+    "query": "打开江苏移动网上营业厅网页",
+    "label": "website"
+  },
+  "28": {
+    "query": "你背首唐诗给我听听啊",
+    "label": "poetry"
+  },
+  "29": {
+    "query": "甲亢怎么治疗？",
+    "label": "health"
+  },
+  "30": {
+    "query": "查下上海到太原的机票",
+    "label": "flight"
+  },
+  "31": {
+    "query": "在干吗啊",
+    "label": "chat"
+  },
+  "32": {
+    "query": "鱼香肉丝的做法啊！",
+    "label": "cookbook"
+  },
+  "33": {
+    "query": "你知道怎么拍照么",
+    "label": "chat"
+  },
+  "34": {
+    "query": "你怎么笨笨的?",
+    "label": "chat"
+  },
+  "35": {
+    "query": "来一首我们的歌谣。",
+    "label": "music"
+  },
+  "36": {
+    "query": "肥肠的做法",
+    "label": "cookbook"
+  },
+  "37": {
+    "query": "打电话温正军",
+    "label": "telephone"
+  },
+  "38": {
+    "query": "黄疸",
+    "label": "health"
+  },
+  "39": {
+    "query": "搜幕府风云",
+    "label": "video"
+  },
+  "40": {
+    "query": "酸辣藕丁的做法。",
+    "label": "cookbook"
+  },
+  "41": {
+    "query": "暴发性紫癜",
+    "label": "health"
+  },
+  "42": {
+    "query": "新闻解码",
+    "label": "tvchannel"
+  },
+  "43": {
+    "query": "憨豆特工",
+    "label": "video"
+  },
+  "44": {
+    "query": "这是哪年的事",
+    "label": "chat"
+  },
+  "45": {
+    "query": "尽在不言中下一句是什么？",
+    "label": "poetry"
+  },
+  "46": {
+    "query": "朗诵一首李白的诗词。",
+    "label": "poetry"
+  },
+  "47": {
+    "query": "现在有什么好的电影呢？",
+    "label": "epg"
+  },
+  "48": {
+    "query": "我要看西游记啊",
+    "label": "video"
+  },
+  "49": {
+    "query": "第二十二条婚规什么时候结束",
+    "label": "epg"
+  },
+  "50": {
+    "query": "进入中国移动官方网站",
+    "label": "website"
+  },
+  "51": {
+    "query": "查询上海到丽江飞机票的价格",
+    "label": "flight"
+  },
+  "52": {
+    "query": "设置明天8:10闹钟。",
+    "label": "schedule"
+  },
+  "53": {
+    "query": "会lol吗",
+    "label": "chat"
+  },
+  "54": {
+    "query": "你生日是什么时候",
+    "label": "chat"
+  },
+  "55": {
+    "query": "面包怎么做",
+    "label": "cookbook"
+  },
+  "56": {
+    "query": "周黑鸭怎么做？",
+    "label": "cookbook"
+  },
+  "57": {
+    "query": "来一首李清照的词",
+    "label": "poetry"
+  },
+  "58": {
+    "query": "可以帮买火车票吗",
+    "label": "chat"
+  },
+  "59": {
+    "query": "朗读一首李白的诗呗！",
+    "label": "poetry"
+  },
+  "60": {
+    "query": "怎么做？酸菜鱼？",
+    "label": "cookbook"
+  },
+  "61": {
+    "query": "做可乐鸡翅需要哪些材料？",
+    "label": "cookbook"
+  },
+  "62": {
+    "query": "动漫频道三天之后有开始播吸血鬼日记第四季呢",
+    "label": "epg"
+  },
+  "63": {
+    "query": "郑州天气",
+    "label": "weather"
+  },
+  "64": {
+    "query": "查询今天上海到成都的航班",
+    "label": "flight"
+  },
+  "65": {
+    "query": "福寿鱼怎么煮比较好吃？",
+    "label": "cookbook"
+  },
+  "66": {
+    "query": "中海油服股票",
+    "label": "stock"
+  },
+  "67": {
+    "query": "你曾爱过我吗用英语怎么说",
+    "label": "translation"
+  },
+  "68": {
+    "query": "红烧肉的做法啊！",
+    "label": "cookbook"
+  },
+  "69": {
+    "query": "端午节是哪一天",
+    "label": "datetime"
+  },
+  "70": {
+    "query": "脆瓜。",
+    "label": "cookbook"
+  },
+  "71": {
+    "query": "最近热门的电影。",
+    "label": "cinemas"
+  },
+  "72": {
+    "query": "回放昨晚的焦点访谈",
+    "label": "epg"
+  },
+  "73": {
+    "query": "蝎子王蝎子王",
+    "label": "video"
+  },
+  "74": {
+    "query": "哦，听新闻。",
+    "label": "news"
+  },
+  "75": {
+    "query": "查询大大后天广州到武汉的航班",
+    "label": "flight"
+  },
+  "76": {
+    "query": "豆沙包。",
+    "label": "cookbook"
+  },
+  "77": {
+    "query": "三女休夫",
+    "label": "video"
+  },
+  "78": {
+    "query": "银耳莲子粥怎么做",
+    "label": "cookbook"
+  },
+  "79": {
+    "query": "其实我不跟你说话么办",
+    "label": "chat"
+  },
+  "80": {
+    "query": "你觉得我嫁的出去吗",
+    "label": "chat"
+  },
+  "81": {
+    "query": "去南昌的火车",
+    "label": "train"
+  },
+  "82": {
+    "query": "推荐几部呗",
+    "label": "chat"
+  },
+  "83": {
+    "query": "请打电话给沈晨浩",
+    "label": "telephone"
+  },
+  "84": {
+    "query": "谁是小萌萌",
+    "label": "chat"
+  },
+  "85": {
+    "query": "欧洲杯谁能夺冠",
+    "label": "chat"
+  },
+  "86": {
+    "query": "它在哪里",
+    "label": "chat"
+  },
+  "87": {
+    "query": "请帮我打开uc",
+    "label": "app"
+  },
+  "88": {
+    "query": "日期植树节",
+    "label": "datetime"
+  },
+  "89": {
+    "query": "江西卫视三天之后放一站到底么",
+    "label": "epg"
+  },
+  "90": {
+    "query": "上海到北京的飞机航班",
+    "label": "flight"
+  },
+  "91": {
+    "query": "明天广州到长葛的火车",
+    "label": "train"
+  },
+  "92": {
+    "query": "发短信方钰玲",
+    "label": "message"
+  },
+  "93": {
+    "query": "怎么安慰啊",
+    "label": "chat"
+  },
+  "94": {
+    "query": "这么傲娇",
+    "label": "chat"
+  },
+  "95": {
+    "query": "更年期综合症。",
+    "label": "health"
+  },
+  "96": {
+    "query": "你咋没上幼儿园",
+    "label": "chat"
+  },
+  "97": {
+    "query": "魔幻电影",
+    "label": "video"
+  },
+  "98": {
+    "query": "重庆到成都的火车票多少钱",
+    "label": "train"
+  },
+  "99": {
+    "query": "帮我看看今天的天气",
+    "label": "weather"
+  },
+  "100": {
+    "query": "任意购买三张大乐透",
+    "label": "lottery"
+  },
+  "101": {
+    "query": "多囊肾怎么治啊？",
+    "label": "health"
+  },
+  "102": {
+    "query": "帮我调频92.8桐庐人民广播电台行不行？",
+    "label": "radio"
+  },
+  "103": {
+    "query": "我要听张雨生的歌。",
+    "label": "music"
+  },
+  "104": {
+    "query": "明天去徐州的航班",
+    "label": "flight"
+  },
+  "105": {
+    "query": "预约还珠格格第八集",
+    "label": "video"
+  },
+  "106": {
+    "query": "帮我查一下从开封到郑州的火车几点发",
+    "label": "train"
+  },
+  "107": {
+    "query": "随便唱首歌。",
+    "label": "music"
+  },
+  "108": {
+    "query": "来首出师表",
+    "label": "music"
+  },
+  "109": {
+    "query": "素鸡",
+    "label": "cookbook"
+  },
+  "110": {
+    "query": "得了关节炎怎么办？",
+    "label": "health"
+  },
+  "111": {
+    "query": "张艺谋的甄嬛传",
+    "label": "video"
+  },
+  "112": {
+    "query": "今天广州的天气怎样",
+    "label": "weather"
+  },
+  "113": {
+    "query": "帮我购买2注25选5的彩票",
+    "label": "lottery"
+  },
+  "114": {
+    "query": "帮我打开人人",
+    "label": "app"
+  },
+  "115": {
+    "query": "科大讯飞的股价如何",
+    "label": "stock"
+  },
+  "116": {
+    "query": "拔丝芋头怎么做",
+    "label": "cookbook"
+  },
+  "117": {
+    "query": "顾超是谁",
+    "label": "chat"
+  },
+  "118": {
+    "query": "你叫什么名字?",
+    "label": "chat"
+  },
+  "119": {
+    "query": "打给孩子的爸",
+    "label": "telephone"
+  },
+  "120": {
+    "query": "怎么这么热受不了了",
+    "label": "chat"
+  },
+  "121": {
+    "query": "南京熊猫股票",
+    "label": "stock"
+  },
+  "122": {
+    "query": "读首唐诗来听听。",
+    "label": "poetry"
+  },
+  "123": {
+    "query": "笨笨你是没有年龄么",
+    "label": "chat"
+  },
+  "124": {
+    "query": "查询距离12点25分还有多少分钟",
+    "label": "datetime"
+  },
+  "125": {
+    "query": "惊情四百年",
+    "label": "video"
+  },
+  "126": {
+    "query": "搜索一下白居易的诗。",
+    "label": "poetry"
+  },
+  "127": {
+    "query": "我想我想做老鸭汤用什么材料？",
+    "label": "cookbook"
+  },
+  "128": {
+    "query": "查询股票00230",
+    "label": "stock"
+  },
+  "129": {
+    "query": "你吃过早饭了吗用英文怎么讲",
+    "label": "translation"
+  },
+  "130": {
+    "query": "你这都跟哪啊快雪的",
+    "label": "chat"
+  },
+  "131": {
+    "query": "造化钟神秀的下一句是什么？",
+    "label": "poetry"
+  },
+  "132": {
+    "query": "我想听重庆新闻。",
+    "label": "news"
+  },
+  "133": {
+    "query": "我要看云南二台",
+    "label": "tvchannel"
+  },
+  "134": {
+    "query": "罗顿发展的股票",
+    "label": "stock"
+  },
+  "135": {
+    "query": "链家地产打开QQ",
+    "label": "app"
+  },
+  "136": {
+    "query": "不懂饭的做法。",
+    "label": "cookbook"
+  },
+  "137": {
+    "query": "怎么上分",
+    "label": "chat"
+  },
+  "138": {
+    "query": "你爱玩什么英雄",
+    "label": "chat"
+  },
+  "139": {
+    "query": "北京到成都的汽车时刻表。",
+    "label": "bus"
+  },
+  "140": {
+    "query": "得了皮肤病怎么办？",
+    "label": "health"
+  },
+  "141": {
+    "query": "蒜茄子怎么做？",
+    "label": "cookbook"
+  },
+  "142": {
+    "query": "晚餐吃点什么呢",
+    "label": "chat"
+  },
+  "143": {
+    "query": "星期四去上海的火车",
+    "label": "train"
+  },
+  "144": {
+    "query": "后天去大连的航班",
+    "label": "flight"
+  },
+  "145": {
+    "query": "宫爆鸡丁的菜谱。",
+    "label": "cookbook"
+  },
+  "146": {
+    "query": "你肥吗",
+    "label": "chat"
+  },
+  "147": {
+    "query": "根号三的倒数",
+    "label": "calc"
+  },
+  "148": {
+    "query": "请帮我打开电影",
+    "label": "video"
+  },
+  "149": {
+    "query": "今天的天气真是好用英语怎么说",
+    "label": "translation"
+  },
+  "150": {
+    "query": "查查科大讯飞在哪里",
+    "label": "map"
+  },
+  "151": {
+    "query": "易车网看看",
+    "label": "website"
+  },
+  "152": {
+    "query": "龙口西路在哪里",
+    "label": "map"
+  },
+  "153": {
+    "query": "新东站怎么走",
+    "label": "map"
+  },
+  "154": {
+    "query": "三安光电",
+    "label": "stock"
+  },
+  "155": {
+    "query": "来首纳兰性德的词。",
+    "label": "poetry"
+  },
+  "156": {
+    "query": "中超赛事预告，从在哪里看呢？",
+    "label": "match"
+  },
+  "157": {
+    "query": "乳腺癌。",
+    "label": "health"
+  },
+  "158": {
+    "query": "今日天气怎么样啊",
+    "label": "weather"
+  },
+  "159": {
+    "query": "武汉到北京的飞机票",
+    "label": "flight"
+  },
+  "160": {
+    "query": "那你帮我打开百度",
+    "label": "website"
+  },
+  "161": {
+    "query": "是谁呀",
+    "label": "chat"
+  },
+  "162": {
+    "query": "打开猫扑",
+    "label": "website"
+  },
+  "163": {
+    "query": "查询后天广州到上海的航班",
+    "label": "flight"
+  },
+  "164": {
+    "query": "世界军事中央台世界军事",
+    "label": "epg"
+  },
+  "165": {
+    "query": "打开uc二哦",
+    "label": "app"
+  },
+  "166": {
+    "query": "金鹰卡通今天晚上放什么节目？",
+    "label": "epg"
+  },
+  "167": {
+    "query": "我想到科大讯飞走高速路线",
+    "label": "map"
+  },
+  "168": {
+    "query": "谁是猪",
+    "label": "chat"
+  },
+  "169": {
+    "query": "你什么梦想",
+    "label": "chat"
+  },
+  "170": {
+    "query": "盘锦新闻。",
+    "label": "news"
+  },
+  "171": {
+    "query": "查询湛江到广州的火车票",
+    "label": "train"
+  },
+  "172": {
+    "query": "姐你红烧肉怎么做呀",
+    "label": "cookbook"
+  },
+  "173": {
+    "query": "订机票今天吃什么",
+    "label": "chat"
+  },
+  "174": {
+    "query": "背首杜甫的诗啊？",
+    "label": "poetry"
+  },
+  "175": {
+    "query": "刘挺是谁？",
+    "label": "chat"
+  },
+  "176": {
+    "query": "请搜电影画皮",
+    "label": "video"
+  },
+  "177": {
+    "query": "刘林面怎么做啊？",
+    "label": "cookbook"
+  },
+  "178": {
+    "query": "嗯我想知道曲阜在什么地方",
+    "label": "map"
+  },
+  "179": {
+    "query": "猪肉丸子汤怎么做啊？",
+    "label": "cookbook"
+  },
+  "180": {
+    "query": "你谁什么",
+    "label": "chat"
+  },
+  "181": {
+    "query": "你说谜语给我猜。",
+    "label": "riddle"
+  },
+  "182": {
+    "query": "读书频道上个星期五有播放新闻联播吗",
+    "label": "epg"
+  },
+  "183": {
+    "query": "大耳朵图图二",
+    "label": "video"
+  },
+  "184": {
+    "query": "我都不害羞你害羞什么",
+    "label": "chat"
+  },
+  "185": {
+    "query": "鼻息肉",
+    "label": "health"
+  },
+  "186": {
+    "query": "天气预报广州",
+    "label": "weather"
+  },
+  "187": {
+    "query": "啊我要订票你怎么吟诗了",
+    "label": "chat"
+  },
+  "188": {
+    "query": "笨笨你爸比和帮主是什么关系",
+    "label": "chat"
+  },
+  "189": {
+    "query": "关注一下今天的欧洲杯新闻",
+    "label": "news"
+  },
+  "190": {
+    "query": "黑芝麻怎么炒？",
+    "label": "cookbook"
+  },
+  "191": {
+    "query": "等，请播报新闻",
+    "label": "news"
+  },
+  "192": {
+    "query": "山东高清",
+    "label": "tvchannel"
+  },
+  "193": {
+    "query": "内分泌失调了怎么调理？",
+    "label": "health"
+  },
+  "194": {
+    "query": "去金湖县城",
+    "label": "map"
+  },
+  "195": {
+    "query": "那好，那你告诉我西红柿炒鸡蛋，怎么去做？",
+    "label": "cookbook"
+  },
+  "196": {
+    "query": "有没有徐州到洛阳的火车票",
+    "label": "train"
+  },
+  "197": {
+    "query": "讯飞语点请你搜索一下番茄炒蛋怎么做？",
+    "label": "cookbook"
+  },
+  "198": {
+    "query": "七月三十一日上海虹桥到北京的航班",
+    "label": "flight"
+  },
+  "199": {
+    "query": "南京到，黄山的汽车。",
+    "label": "bus"
+  },
+  "200": {
+    "query": "呼叫浦蒲",
+    "label": "telephone"
+  },
+  "201": {
+    "query": "山东台高清",
+    "label": "tvchannel"
+  },
+  "202": {
+    "query": "嗯你叫啥呀",
+    "label": "chat"
+  },
+  "203": {
+    "query": "现在电影院有什么好电影？",
+    "label": "cinemas"
+  },
+  "204": {
+    "query": "9的2次方根的3次方",
+    "label": "calc"
+  },
+  "205": {
+    "query": "中国石化的股价怎么样",
+    "label": "stock"
+  },
+  "206": {
+    "query": "小老虎用英语怎么讲",
+    "label": "translation"
+  },
+  "207": {
+    "query": "查找科大讯飞股票的股价",
+    "label": "stock"
+  },
+  "208": {
+    "query": "小c帮我搜一下断剑视频",
+    "label": "video"
+  },
+  "209": {
+    "query": "你怎么会不知道能",
+    "label": "chat"
+  },
+  "210": {
+    "query": "CCTV农业",
+    "label": "tvchannel"
+  },
+  "211": {
+    "query": "帮我上下新浪网",
+    "label": "website"
+  },
+  "212": {
+    "query": "歌曲白天不懂夜的黑",
+    "label": "music"
+  },
+  "213": {
+    "query": "给我看邮件",
+    "label": "email"
+  },
+  "214": {
+    "query": "小猪哨糖醋排骨的做法。",
+    "label": "cookbook"
+  },
+  "215": {
+    "query": "你下蛋吗",
+    "label": "chat"
+  },
+  "216": {
+    "query": "你是说我有意思吗",
+    "label": "chat"
+  },
+  "217": {
+    "query": "帮我搜索一下红烧排骨。",
+    "label": "cookbook"
+  },
+  "218": {
+    "query": "背一首声声慢。",
+    "label": "poetry"
+  },
+  "219": {
+    "query": "去深圳怎么坐车？",
+    "label": "bus"
+  },
+  "220": {
+    "query": "开微信",
+    "label": "app"
+  },
+  "221": {
+    "query": "红烧带鱼怎么做？你？",
+    "label": "cookbook"
+  },
+  "222": {
+    "query": "不行么",
+    "label": "chat"
+  },
+  "223": {
+    "query": "打开QQ通讯",
+    "label": "app"
+  },
+  "224": {
+    "query": "帮我看一下明天去北京的飞机",
+    "label": "flight"
+  },
+  "225": {
+    "query": "北京青年频道谁在说",
+    "label": "epg"
+  },
+  "226": {
+    "query": "青春四十",
+    "label": "video"
+  },
+  "227": {
+    "query": "拨打幺三七零九五二零八五八",
+    "label": "telephone"
+  },
+  "228": {
+    "query": "什么一年多了",
+    "label": "chat"
+  },
+  "229": {
+    "query": "板栗怎么煮？",
+    "label": "cookbook"
+  },
+  "230": {
+    "query": "做的还是不够好",
+    "label": "chat"
+  },
+  "231": {
+    "query": "新建联系人李四号码是一二三四五六七八",
+    "label": "contacts"
+  },
+  "232": {
+    "query": "整人专家的电影",
+    "label": "video"
+  },
+  "233": {
+    "query": "在合肥怎么坐去南京的汽车",
+    "label": "bus"
+  },
+  "234": {
+    "query": "鸡蛋的做法",
+    "label": "cookbook"
+  },
+  "235": {
+    "query": "有答案了吗",
+    "label": "chat"
+  },
+  "236": {
+    "query": "今天晚上有没有中国好声音呢？",
+    "label": "epg"
+  },
+  "237": {
+    "query": "你能做点什么",
+    "label": "chat"
+  },
+  "238": {
+    "query": "黑米红豆粥的做法。",
+    "label": "cookbook"
+  },
+  "239": {
+    "query": "肠胃炎怎么治？",
+    "label": "health"
+  },
+  "240": {
+    "query": "打开汽车之家",
+    "label": "app"
+  },
+  "241": {
+    "query": "明天叫我8:10起床。",
+    "label": "schedule"
+  },
+  "242": {
+    "query": "小破孩动画片",
+    "label": "video"
+  },
+  "243": {
+    "query": "科大讯飞的股票是多少a",
+    "label": "stock"
+  },
+  "244": {
+    "query": "老马的电话是多少",
+    "label": "contacts"
+  },
+  "245": {
+    "query": "你的性格是什么",
+    "label": "chat"
+  },
+  "246": {
+    "query": "不，做个红烧肉怎么做？",
+    "label": "cookbook"
+  },
+  "247": {
+    "query": "贵州卫视今晚看什么电视剧？",
+    "label": "epg"
+  },
+  "248": {
+    "query": "从台州到金华的汽车。",
+    "label": "bus"
+  },
+  "249": {
+    "query": "朗读岳飞的满江红。",
+    "label": "poetry"
+  },
+  "250": {
+    "query": "天王盖地虎的下一句是什么？",
+    "label": "poetry"
+  },
+  "251": {
+    "query": "查询中国石化的股价",
+    "label": "stock"
+  },
+  "252": {
+    "query": "看一看七乐彩的信息",
+    "label": "lottery"
+  },
+  "253": {
+    "query": "你们这么爽",
+    "label": "chat"
+  },
+  "254": {
+    "query": "高清中央8",
+    "label": "tvchannel"
+  },
+  "255": {
+    "query": "80年代成龙演的电影",
+    "label": "video"
+  },
+  "256": {
+    "query": "打开百度哇",
+    "label": "website"
+  },
+  "257": {
+    "query": "体育赛事直播",
+    "label": "video"
+  },
+  "258": {
+    "query": "把高建清的号码发给潘青华",
+    "label": "contacts"
+  },
+  "259": {
+    "query": "毛阿敏的歌",
+    "label": "music"
+  },
+  "260": {
+    "query": "南山医院到北大医院路线",
+    "label": "map"
+  },
+  "261": {
+    "query": "一站到底是哪个电视台播放的。",
+    "label": "epg"
+  },
+  "262": {
+    "query": "恶熊出没",
+    "label": "video"
+  },
+  "263": {
+    "query": "查询广州到北京的火车",
+    "label": "train"
+  },
+  "264": {
+    "query": "打电话给阿华",
+    "label": "telephone"
+  },
+  "265": {
+    "query": "哪个频道有刘德华出演的电视剧",
+    "label": "epg"
+  },
+  "266": {
+    "query": "爱她该怎么做",
+    "label": "chat"
+  },
+  "267": {
+    "query": "那草为啥会绿",
+    "label": "chat"
+  },
+  "268": {
+    "query": "为啥穷",
+    "label": "chat"
+  },
+  "269": {
+    "query": "我给我念一首李白的诗吧？",
+    "label": "poetry"
+  },
+  "270": {
+    "query": "笑话用英语怎么说",
+    "label": "translation"
+  },
+  "271": {
+    "query": "呼叫王希",
+    "label": "telephone"
+  },
+  "272": {
+    "query": "跳换到湖南卫视",
+    "label": "tvchannel"
+  },
+  "273": {
+    "query": "过敏性鼻炎怎么治疗",
+    "label": "health"
+  },
+  "274": {
+    "query": "最近好评的晚会",
+    "label": "video"
+  },
+  "275": {
+    "query": "猪大肠怎么炒？",
+    "label": "cookbook"
+  },
+  "276": {
+    "query": "做苹果麦片粥需要哪写材料？",
+    "label": "cookbook"
+  },
+  "277": {
+    "query": "打了怎么做红烧肉的做法？",
+    "label": "cookbook"
+  },
+  "278": {
+    "query": "查一下明天下午南通到南京的火车票",
+    "label": "train"
+  },
+  "279": {
+    "query": "没听清吗",
+    "label": "chat"
+  },
+  "280": {
+    "query": "帮我看一下最近哪些电影是新上映的。",
+    "label": "video"
+  },
+  "281": {
+    "query": "帮我搜下什么时间有演星跳水立方",
+    "label": "epg"
+  },
+  "282": {
+    "query": "九连股份今天股价",
+    "label": "stock"
+  },
+  "283": {
+    "query": "查雷神电影",
+    "label": "video"
+  },
+  "284": {
+    "query": "你唉啥",
+    "label": "chat"
+  },
+  "285": {
+    "query": "北京二台高清",
+    "label": "tvchannel"
+  },
+  "286": {
+    "query": "搜索烤饼的做法。",
+    "label": "cookbook"
+  },
+  "287": {
+    "query": "帮我找出红烧肉的做法。",
+    "label": "cookbook"
+  },
+  "288": {
+    "query": "干贝怎么做？",
+    "label": "cookbook"
+  },
+  "289": {
+    "query": "打开qq同步助手",
+    "label": "app"
+  },
+  "290": {
+    "query": "找深圳卫视",
+    "label": "tvchannel"
+  },
+  "291": {
+    "query": "调频fm九十七点七",
+    "label": "radio"
+  },
+  "292": {
+    "query": "搜索合肥左岸电影城。",
+    "label": "cinemas"
+  },
+  "293": {
+    "query": "出一个谜语给我猜猜吧！",
+    "label": "riddle"
+  },
+  "294": {
+    "query": "明天深圳天气怎么样",
+    "label": "weather"
+  },
+  "295": {
+    "query": "烟台到齐齐哈尔的火车票",
+    "label": "train"
+  },
+  "296": {
+    "query": "这么笨啊怪不得叫笨笨",
+    "label": "chat"
+  },
+  "297": {
+    "query": "湖南卫视现在演什么节目",
+    "label": "epg"
+  },
+  "298": {
+    "query": "开封到信阳的火车",
+    "label": "train"
+  },
+  "299": {
+    "query": "什么鬼玩意",
+    "label": "chat"
+  },
+  "300": {
+    "query": "你在说啥啊",
+    "label": "chat"
+  },
+  "301": {
+    "query": "弄啥类",
+    "label": "chat"
+  },
+  "302": {
+    "query": "阿妈，来一首白居易的诗。",
+    "label": "poetry"
+  },
+  "303": {
+    "query": "做红烧肉怎么做？",
+    "label": "cookbook"
+  },
+  "304": {
+    "query": "有没有下周二到贵阳的航班",
+    "label": "flight"
+  },
+  "305": {
+    "query": "有什么好看的校园小说",
+    "label": "novel"
+  },
+  "306": {
+    "query": "怎么走爽了呢",
+    "label": "chat"
+  },
+  "307": {
+    "query": "去华强北的路怎么走",
+    "label": "map"
+  },
+  "308": {
+    "query": "再讲一个谜语吧！",
+    "label": "riddle"
+  },
+  "309": {
+    "query": "最近几期的大乐透的开奖情况",
+    "label": "lottery"
+  },
+  "310": {
+    "query": "t我要听新闻。",
+    "label": "news"
+  },
+  "311": {
+    "query": "来一首不可以。",
+    "label": "music"
+  },
+  "312": {
+    "query": "我要打电话给洪云刚",
+    "label": "telephone"
+  },
+  "313": {
+    "query": "我想打开新邮件",
+    "label": "email"
+  },
+  "314": {
+    "query": "朱泽圻女朋友你认识吗",
+    "label": "chat"
+  },
+  "315": {
+    "query": "杭州到北京的火车班次",
+    "label": "train"
+  },
+  "316": {
+    "query": "0乘7",
+    "label": "calc"
+  },
+  "317": {
+    "query": "北京西站在哪",
+    "label": "map"
+  },
+  "318": {
+    "query": "鲤鱼怎么做？",
+    "label": "cookbook"
+  },
+  "319": {
+    "query": "我想听期待这首歌",
+    "label": "music"
+  },
+  "320": {
+    "query": "肺结核要注意些啥",
+    "label": "health"
+  },
+  "321": {
+    "query": "你是穆斯林吗",
+    "label": "chat"
+  },
+  "322": {
+    "query": "给栾佳佳发短信说回到济南了",
+    "label": "message"
+  },
+  "323": {
+    "query": "发现之美",
+    "label": "video"
+  },
+  "324": {
+    "query": "搜一搜三毛的小说",
+    "label": "novel"
+  },
+  "325": {
+    "query": "念首唐诗吧！",
+    "label": "poetry"
+  },
+  "326": {
+    "query": "喝啥子哩",
+    "label": "chat"
+  },
+  "327": {
+    "query": "年代秀什么时候播",
+    "label": "epg"
+  },
+  "328": {
+    "query": "从广州到南昌的火车票时刻表",
+    "label": "train"
+  },
+  "329": {
+    "query": "你怎么就知道我不会呢？",
+    "label": "chat"
+  },
+  "330": {
+    "query": "扬州炒饭",
+    "label": "cookbook"
+  },
+  "331": {
+    "query": "给叶君恩打电话",
+    "label": "telephone"
+  },
+  "332": {
+    "query": "那聊什么呢",
+    "label": "chat"
+  },
+  "333": {
+    "query": "宏大俱乐部赛程。",
+    "label": "match"
+  },
+  "334": {
+    "query": "帮我查一下从济南到福州的机票",
+    "label": "flight"
+  },
+  "335": {
+    "query": "帮我查一下宁波到郑州的火车",
+    "label": "train"
+  },
+  "336": {
+    "query": "离我最近的电影院。",
+    "label": "cinemas"
+  },
+  "337": {
+    "query": "酸菜鱼，怎么烧？",
+    "label": "cookbook"
+  },
+  "338": {
+    "query": "央视9",
+    "label": "tvchannel"
+  },
+  "339": {
+    "query": "广州恒大比赛比分。",
+    "label": "match"
+  },
+  "340": {
+    "query": "大耳朵图图获",
+    "label": "video"
+  },
+  "341": {
+    "query": "喝哪种酒",
+    "label": "chat"
+  },
+  "342": {
+    "query": "你是哪里的人啊",
+    "label": "chat"
+  },
+  "343": {
+    "query": "红烧牛肉面我想来一碗。",
+    "label": "cookbook"
+  },
+  "344": {
+    "query": "中超比赛。",
+    "label": "match"
+  },
+  "345": {
+    "query": "星期六的天气",
+    "label": "weather"
+  },
+  "346": {
+    "query": "银川天气怎么样",
+    "label": "weather"
+  },
+  "347": {
+    "query": "中超赛事预告，你。",
+    "label": "match"
+  },
+  "348": {
+    "query": "我想要全部答复",
+    "label": "email"
+  },
+  "349": {
+    "query": "做火腿炒茄瓜需要什么材料？",
+    "label": "cookbook"
+  },
+  "350": {
+    "query": "打电话给hello word",
+    "label": "telephone"
+  },
+  "351": {
+    "query": "翻译芬兰",
+    "label": "translation"
+  },
+  "352": {
+    "query": "你怎么变笨了",
+    "label": "chat"
+  },
+  "353": {
+    "query": "你们学校机械学院都有哪些好老师他们都叫什么名字",
+    "label": "chat"
+  },
+  "354": {
+    "query": "广西电视台现在播放什么节目？",
+    "label": "epg"
+  },
+  "355": {
+    "query": "翻译背首诗",
+    "label": "translation"
+  },
+  "356": {
+    "query": "一共有几个小动物",
+    "label": "chat"
+  },
+  "357": {
+    "query": "传简讯给家里",
+    "label": "message"
+  },
+  "358": {
+    "query": "给潘开国发短信",
+    "label": "message"
+  },
+  "359": {
+    "query": "青年奥林匹克运动会",
+    "label": "video"
+  },
+  "360": {
+    "query": "连云港到徐州的火车票",
+    "label": "train"
+  },
+  "361": {
+    "query": "我要查找雷迪波尔电影院最新上映的大片",
+    "label": "cinemas"
+  },
+  "362": {
+    "query": "请帮我播放樱桃",
+    "label": "video"
+  },
+  "363": {
+    "query": "把鱼苗的电话号码发给徐景明",
+    "label": "contacts"
+  },
+  "364": {
+    "query": "煲鸡汤。",
+    "label": "cookbook"
+  },
+  "365": {
+    "query": "你娘亲是谁",
+    "label": "chat"
+  },
+  "366": {
+    "query": "打开网页猫扑",
+    "label": "website"
+  },
+  "367": {
+    "query": "海虾的做法。",
+    "label": "cookbook"
+  },
+  "368": {
+    "query": "做黄焖小土豆怎么做啊？",
+    "label": "cookbook"
+  },
+  "369": {
+    "query": "谈的怎么样",
+    "label": "chat"
+  },
+  "370": {
+    "query": "怎么去农业银行",
+    "label": "map"
+  },
+  "371": {
+    "query": "一分钟后叫我起床。",
+    "label": "schedule"
+  },
+  "372": {
+    "query": "炸里鸡的做法。",
+    "label": "cookbook"
+  },
+  "373": {
+    "query": "中央六台的节目单",
+    "label": "epg"
+  },
+  "374": {
+    "query": "明天从桂林到杭州的航班",
+    "label": "flight"
+  },
+  "375": {
+    "query": "小白菜拌豆腐怎么做呀？",
+    "label": "cookbook"
+  },
+  "376": {
+    "query": "给爸爸发条短信，说“爸爸，我国庆节回来”",
+    "label": "message"
+  },
+  "377": {
+    "query": "做红烧肉。",
+    "label": "cookbook"
+  },
+  "378": {
+    "query": "东营到济南的航班",
+    "label": "flight"
+  },
+  "379": {
+    "query": "最近有什么电影可以看一下。",
+    "label": "video"
+  },
+  "380": {
+    "query": "发短信给林晓云说我爱你",
+    "label": "message"
+  },
+  "381": {
+    "query": "北京到上海的火车票",
+    "label": "train"
+  },
+  "382": {
+    "query": "我记住了用英文怎么讲",
+    "label": "translation"
+  },
+  "383": {
+    "query": "给我放一部最新的电影。",
+    "label": "cinemas"
+  },
+  "384": {
+    "query": "从无锡市到西安市的汽车。",
+    "label": "bus"
+  },
+  "385": {
+    "query": "你在玩什么呀",
+    "label": "chat"
+  },
+  "386": {
+    "query": "4乘6然后再乘七再除以二",
+    "label": "calc"
+  },
+  "387": {
+    "query": "长春现在是什么天气",
+    "label": "weather"
+  },
+  "388": {
+    "query": "给孟南发短信",
+    "label": "message"
+  },
+  "389": {
+    "query": "我想看爱在春天",
+    "label": "video"
+  },
+  "390": {
+    "query": "我想知道今天的娱乐新闻。",
+    "label": "news"
+  },
+  "391": {
+    "query": "金枝欲孽",
+    "label": "video"
+  },
+  "392": {
+    "query": "放年代短片看",
+    "label": "video"
+  },
+  "393": {
+    "query": "明天天气怎样啊",
+    "label": "weather"
+  },
+  "394": {
+    "query": "星期天早晨我们一起去打篮球英语怎么说",
+    "label": "translation"
+  },
+  "395": {
+    "query": "查询大乐透的开奖公告",
+    "label": "lottery"
+  },
+  "396": {
+    "query": "胡萝卜怎么炒好吃？",
+    "label": "cookbook"
+  },
+  "397": {
+    "query": "幺五八九三二八二八三八",
+    "label": "telephone"
+  },
+  "398": {
+    "query": "青瓷电视剧",
+    "label": "video"
+  },
+  "399": {
+    "query": "给我打个谜语，啊！",
+    "label": "riddle"
+  },
+  "400": {
+    "query": "武林风视频",
+    "label": "video"
+  },
+  "401": {
+    "query": "搜索第10频道",
+    "label": "tvchannel"
+  },
+  "402": {
+    "query": "怎么教你记住东西",
+    "label": "chat"
+  },
+  "403": {
+    "query": "明天是农历几号",
+    "label": "datetime"
+  },
+  "404": {
+    "query": "54乘上45",
+    "label": "calc"
+  },
+  "405": {
+    "query": "电影频道今天放什么",
+    "label": "epg"
+  },
+  "406": {
+    "query": "你有兄弟么",
+    "label": "chat"
+  },
+  "407": {
+    "query": "蛋黄焗薯条怎么做",
+    "label": "cookbook"
+  },
+  "408": {
+    "query": "河北在哪里",
+    "label": "map"
+  },
+  "409": {
+    "query": "保利地产的股票",
+    "label": "stock"
+  },
+  "410": {
+    "query": "该我读新闻。",
+    "label": "news"
+  },
+  "411": {
+    "query": "切换上海频道",
+    "label": "tvchannel"
+  },
+  "412": {
+    "query": "怎么写",
+    "label": "chat"
+  },
+  "413": {
+    "query": "帮我看一下到科大讯飞最快的是哪条路线",
+    "label": "map"
+  },
+  "414": {
+    "query": "我想听星月神话",
+    "label": "music"
+  },
+  "415": {
+    "query": "我要听FM90.8",
+    "label": "radio"
+  },
+  "416": {
+    "query": "我喜欢好朋友吗",
+    "label": "chat"
+  },
+  "417": {
+    "query": "好吧，我想知道稻香排骨是怎么做的？",
+    "label": "cookbook"
+  },
+  "418": {
+    "query": "玉照公园怎么走",
+    "label": "map"
+  },
+  "419": {
+    "query": "五梆瓜鸡蛋汤怎么做？",
+    "label": "cookbook"
+  },
+  "420": {
+    "query": "搜索25选5的获奖号码",
+    "label": "lottery"
+  },
+  "421": {
+    "query": "糖尿病注意什么？",
+    "label": "health"
+  },
+  "422": {
+    "query": "你长什么样子",
+    "label": "chat"
+  },
+  "423": {
+    "query": "你是宇宙飞船吗",
+    "label": "chat"
+  },
+  "424": {
+    "query": "我要看图文小说",
+    "label": "novel"
+  },
+  "425": {
+    "query": "我想知道北京的天气",
+    "label": "weather"
+  },
+  "426": {
+    "query": "我想看中央十三频道",
+    "label": "tvchannel"
+  },
+  "427": {
+    "query": "家有儿女第二部",
+    "label": "video"
+  },
+  "428": {
+    "query": "我要看唯美童话小说",
+    "label": "novel"
+  },
+  "429": {
+    "query": "你的梦想是什么呢",
+    "label": "chat"
+  },
+  "430": {
+    "query": "帮我调频94.8兰溪人民广播电台可以不？",
+    "label": "radio"
+  },
+  "431": {
+    "query": "你妈逼你考大学了吗",
+    "label": "chat"
+  },
+  "432": {
+    "query": "CCTV新闻",
+    "label": "tvchannel"
+  },
+  "433": {
+    "query": "么么么哒",
+    "label": "chat"
+  },
+  "434": {
+    "query": "郑州的天气怎么样",
+    "label": "weather"
+  },
+  "435": {
+    "query": "哦钢结构的电话是多少",
+    "label": "contacts"
+  },
+  "436": {
+    "query": "哼谁是你亲爱的",
+    "label": "chat"
+  },
+  "437": {
+    "query": "查询临沂到济南的火车票",
+    "label": "train"
+  },
+  "438": {
+    "query": "你想吃什么呀",
+    "label": "chat"
+  },
+  "439": {
+    "query": "笨笨家在哪",
+    "label": "chat"
+  },
+  "440": {
+    "query": "怎么",
+    "label": "chat"
+  },
+  "441": {
+    "query": "挑逗你真好玩儿英语怎么说",
+    "label": "translation"
+  },
+  "442": {
+    "query": "文艺片",
+    "label": "video"
+  },
+  "443": {
+    "query": "你怎么知道～",
+    "label": "chat"
+  },
+  "444": {
+    "query": "就不告诉你又能咋样我你再跟我那么叫我起床！跟我说句话！估计你给我发个图或者跟你给我发个表情我才能告诉你！要不然你就得跟我换个秘密！",
+    "label": "chat"
+  },
+  "445": {
+    "query": "感冒注意什么？",
+    "label": "health"
+  },
+  "446": {
+    "query": "出口在哪里英文怎么说",
+    "label": "translation"
+  },
+  "447": {
+    "query": "播放非诚勿扰",
+    "label": "video"
+  },
+  "448": {
+    "query": "哪有小猫",
+    "label": "chat"
+  },
+  "449": {
+    "query": "钓鱼岛新闻",
+    "label": "news"
+  },
+  "450": {
+    "query": "炝拌土豆丝。",
+    "label": "cookbook"
+  },
+  "451": {
+    "query": "什么语无伦次的",
+    "label": "chat"
+  },
+  "452": {
+    "query": "来一首隐形的翅膀。",
+    "label": "music"
+  },
+  "453": {
+    "query": "龙岩市天气",
+    "label": "weather"
+  },
+  "454": {
+    "query": "发短信给王二白叫她明天过来玩",
+    "label": "message"
+  },
+  "455": {
+    "query": "夜访吸血鬼",
+    "label": "video"
+  },
+  "456": {
+    "query": "我要看末世进化小说",
+    "label": "novel"
+  },
+  "457": {
+    "query": "现在有没有什么大片？",
+    "label": "epg"
+  },
+  "458": {
+    "query": "查询许昌到中山的汽车。",
+    "label": "bus"
+  },
+  "459": {
+    "query": "火气冲天，下一句是什么？",
+    "label": "poetry"
+  },
+  "460": {
+    "query": "谁子",
+    "label": "chat"
+  },
+  "461": {
+    "query": "鱼香肉丝，怎么炒？",
+    "label": "cookbook"
+  },
+  "462": {
+    "query": "打电话给六六三",
+    "label": "telephone"
+  },
+  "463": {
+    "query": "点一首爱情买卖来听听",
+    "label": "music"
+  },
+  "464": {
+    "query": "智慧树我",
+    "label": "video"
+  },
+  "465": {
+    "query": "灌汤小笼包怎样做。",
+    "label": "cookbook"
+  },
+  "466": {
+    "query": "干锅香辣虾",
+    "label": "cookbook"
+  },
+  "467": {
+    "query": "包皮包茎",
+    "label": "health"
+  },
+  "468": {
+    "query": "我说吃飞蟹，怎么做？",
+    "label": "cookbook"
+  },
+  "469": {
+    "query": "黑猫截长",
+    "label": "video"
+  },
+  "470": {
+    "query": "小c我想看北京青年",
+    "label": "video"
+  },
+  "471": {
+    "query": "你咋知道我是老师?",
+    "label": "chat"
+  },
+  "472": {
+    "query": "发短信给王勋连说我很好",
+    "label": "message"
+  },
+  "473": {
+    "query": "查询大北农的股票",
+    "label": "stock"
+  },
+  "474": {
+    "query": "要看特种兵",
+    "label": "video"
+  },
+  "475": {
+    "query": "帮我查下上海到合肥的火车",
+    "label": "train"
+  },
+  "476": {
+    "query": "虾的英文怎么说",
+    "label": "translation"
+  },
+  "477": {
+    "query": "查寻上海到北京的火车票",
+    "label": "train"
+  },
+  "478": {
+    "query": "打电话给张帕楼",
+    "label": "telephone"
+  },
+  "479": {
+    "query": "打开相机这",
+    "label": "app"
+  },
+  "480": {
+    "query": "进银河网",
+    "label": "website"
+  },
+  "481": {
+    "query": "来点歌听听",
+    "label": "music"
+  },
+  "482": {
+    "query": "土豆粉怎么做好吃？",
+    "label": "cookbook"
+  },
+  "483": {
+    "query": "谁告诉你的",
+    "label": "chat"
+  },
+  "484": {
+    "query": "糖醋鲤鱼怎么做啊？你只负责吃，c则c。",
+    "label": "cookbook"
+  },
+  "485": {
+    "query": "提示什么",
+    "label": "chat"
+  },
+  "486": {
+    "query": "来一首琵琶行。",
+    "label": "poetry"
+  },
+  "487": {
+    "query": "徐梓翔是谁",
+    "label": "chat"
+  },
+  "488": {
+    "query": "破伤风该怎么处理",
+    "label": "health"
+  },
+  "489": {
+    "query": "能发点其他的吗",
+    "label": "chat"
+  },
+  "490": {
+    "query": "翻译秋天",
+    "label": "translation"
+  },
+  "491": {
+    "query": "广汇股份的收盘价格",
+    "label": "stock"
+  },
+  "492": {
+    "query": "嗯咯鸡爪怎么做的。",
+    "label": "cookbook"
+  },
+  "493": {
+    "query": "最近最热的电视剧",
+    "label": "video"
+  },
+  "494": {
+    "query": "可以教教吗?",
+    "label": "chat"
+  },
+  "495": {
+    "query": "电影搜索啊！",
+    "label": "cinemas"
+  },
+  "496": {
+    "query": "电影十二生肖",
+    "label": "video"
+  },
+  "497": {
+    "query": "黎宇我要玩中国象棋",
+    "label": "app"
+  },
+  "498": {
+    "query": "清蒸鱼怎么做？吴？",
+    "label": "cookbook"
+  },
+  "499": {
+    "query": "哪里牛逼了",
+    "label": "chat"
+  },
+  "500": {
+    "query": "明晚真人秀频道有播放过百变大咖秀呢",
+    "label": "epg"
+  },
+  "501": {
+    "query": "对呀+你咋这么笨呢",
+    "label": "chat"
+  },
+  "502": {
+    "query": "来一首白居易的诗",
+    "label": "poetry"
+  },
+  "503": {
+    "query": "你能听懂我说的是啥吗",
+    "label": "chat"
+  },
+  "504": {
+    "query": "你好能看懂表情吗呲牙",
+    "label": "chat"
+  },
+  "505": {
+    "query": "我想看现在很流行的小说",
+    "label": "novel"
+  },
+  "506": {
+    "query": "我叫小沈阳这首歌",
+    "label": "music"
+  },
+  "507": {
+    "query": "你是用什么训练的",
+    "label": "chat"
+  },
+  "508": {
+    "query": "尼古拉斯凯奇",
+    "label": "video"
+  },
+  "509": {
+    "query": "我能把你教坏吗",
+    "label": "chat"
+  },
+  "510": {
+    "query": "帮我出一个灯谜。",
+    "label": "riddle"
+  },
+  "511": {
+    "query": "占田你给我放一下最近的新闻。",
+    "label": "news"
+  },
+  "512": {
+    "query": "是我说话太直接了么",
+    "label": "chat"
+  },
+  "513": {
+    "query": "痛经。",
+    "label": "health"
+  },
+  "514": {
+    "query": "广州恒大比赛谁赢了。",
+    "label": "match"
+  },
+  "515": {
+    "query": "凭啥",
+    "label": "chat"
+  },
+  "516": {
+    "query": "现在温度几度",
+    "label": "weather"
+  },
+  "517": {
+    "query": "背诵唐诗三百首静夜思。",
+    "label": "poetry"
+  },
+  "518": {
+    "query": "我想看一下温州的天气",
+    "label": "weather"
+  },
+  "519": {
+    "query": "那你哈尔滨那边有什么好吃的呀你今天吃什么呀",
+    "label": "chat"
+  },
+  "520": {
+    "query": "什么有点意思啊",
+    "label": "chat"
+  },
+  "521": {
+    "query": "来一首有点舍不得",
+    "label": "music"
+  },
+  "522": {
+    "query": "请问红烧肉的做法？你，你。",
+    "label": "cookbook"
+  },
+  "523": {
+    "query": "CCTV9明晚有转播仁心解码2呢",
+    "label": "epg"
+  },
+  "524": {
+    "query": "唐代诗人李白。",
+    "label": "poetry"
+  },
+  "525": {
+    "query": "我要看电视了",
+    "label": "video"
+  },
+  "526": {
+    "query": "给我来一首，相见恨晚的音乐。",
+    "label": "music"
+  },
+  "527": {
+    "query": "酱油鸡。",
+    "label": "cookbook"
+  },
+  "528": {
+    "query": "卡酷少儿频道",
+    "label": "tvchannel"
+  },
+  "529": {
+    "query": "帮我找到微信",
+    "label": "app"
+  },
+  "530": {
+    "query": "哦哦，最新的电影。",
+    "label": "cinemas"
+  },
+  "531": {
+    "query": "请拨幺幺零",
+    "label": "telephone"
+  },
+  "532": {
+    "query": "萝卜炖排骨汤怎么做？",
+    "label": "cookbook"
+  },
+  "533": {
+    "query": "张培的电话号码是多少",
+    "label": "contacts"
+  },
+  "534": {
+    "query": "播放上海滩。",
+    "label": "music"
+  },
+  "535": {
+    "query": "去桂林的航班怎样",
+    "label": "flight"
+  },
+  "536": {
+    "query": "搜索最新新闻。",
+    "label": "news"
+  },
+  "537": {
+    "query": "聊这么",
+    "label": "chat"
+  },
+  "538": {
+    "query": "打开腾讯拍拍网",
+    "label": "website"
+  },
+  "539": {
+    "query": "你不是本人吗",
+    "label": "chat"
+  },
+  "540": {
+    "query": "发消息给周磊",
+    "label": "message"
+  },
+  "541": {
+    "query": "讲个谜语吧，辣。",
+    "label": "riddle"
+  },
+  "542": {
+    "query": "打开聚划算网站",
+    "label": "website"
+  },
+  "543": {
+    "query": "你们你过生日吃蛋糕吗",
+    "label": "chat"
+  },
+  "544": {
+    "query": "测试信号2",
+    "label": "tvchannel"
+  },
+  "545": {
+    "query": "汽车总动员",
+    "label": "video"
+  },
+  "546": {
+    "query": "帮我查一下明天去郑州的火车票",
+    "label": "train"
+  },
+  "547": {
+    "query": "45的倒数多少啊",
+    "label": "calc"
+  },
+  "548": {
+    "query": "从广州到贵阳市的航班",
+    "label": "flight"
+  },
+  "549": {
+    "query": "怎么样煮方便面。",
+    "label": "cookbook"
+  },
+  "550": {
+    "query": "盘县今天的天气如何",
+    "label": "weather"
+  },
+  "551": {
+    "query": "帮我查一下2013年2月8日开奖的七星彩中奖号码",
+    "label": "lottery"
+  },
+  "552": {
+    "query": "说个李白的诗来听听。",
+    "label": "poetry"
+  },
+  "553": {
+    "query": "现在的日期",
+    "label": "datetime"
+  },
+  "554": {
+    "query": "从余姚到贵阳的火车票",
+    "label": "train"
+  },
+  "555": {
+    "query": "帮我发邮件给婷婷",
+    "label": "email"
+  },
+  "556": {
+    "query": "发条短信给杨桑",
+    "label": "message"
+  },
+  "557": {
+    "query": "唐诗哦。",
+    "label": "poetry"
+  },
+  "558": {
+    "query": "第二梦",
+    "label": "video"
+  },
+  "559": {
+    "query": "打开浦发银行",
+    "label": "website"
+  },
+  "560": {
+    "query": "这么神奇吗",
+    "label": "chat"
+  },
+  "561": {
+    "query": "帮我查查北京电视台-6上周六开始美味的想念呢",
+    "label": "epg"
+  },
+  "562": {
+    "query": "高清中央电视台电影频道",
+    "label": "tvchannel"
+  },
+  "563": {
+    "query": "k新闻想听新闻。",
+    "label": "news"
+  },
+  "564": {
+    "query": "下面有什么",
+    "label": "chat"
+  },
+  "565": {
+    "query": "泰州新闻。",
+    "label": "news"
+  },
+  "566": {
+    "query": "糖醋排骨怎么做？好了额，你。",
+    "label": "cookbook"
+  },
+  "567": {
+    "query": "背首宋词。",
+    "label": "poetry"
+  },
+  "568": {
+    "query": "我就不是好孩子了怎么了",
+    "label": "chat"
+  },
+  "569": {
+    "query": "动物谜语。",
+    "label": "riddle"
+  },
+  "570": {
+    "query": "谁是你的爱",
+    "label": "chat"
+  },
+  "571": {
+    "query": "找找三毛的爱情小说",
+    "label": "novel"
+  },
+  "572": {
+    "query": "你能曝照吗",
+    "label": "chat"
+  },
+  "573": {
+    "query": "播放音乐喜帖街。",
+    "label": "music"
+  },
+  "574": {
+    "query": "搜一下今天中午开始放郭的秀",
+    "label": "epg"
+  },
+  "575": {
+    "query": "帮我链接到新浪网",
+    "label": "website"
+  },
+  "576": {
+    "query": "那你为什么要养家糊口",
+    "label": "chat"
+  },
+  "577": {
+    "query": "早晨8:10叫我。",
+    "label": "schedule"
+  },
+  "578": {
+    "query": "鸡爪怎么炒？",
+    "label": "cookbook"
+  },
+  "579": {
+    "query": "啥呀\t0",
+    "label": "chat"
+  },
+  "580": {
+    "query": "音乐视频",
+    "label": "video"
+  },
+  "581": {
+    "query": "调频幺零三点二",
+    "label": "radio"
+  },
+  "582": {
+    "query": "爱情工寓",
+    "label": "video"
+  },
+  "583": {
+    "query": "背一首李白的诗来听听。",
+    "label": "poetry"
+  },
+  "584": {
+    "query": "she的歌",
+    "label": "music"
+  },
+  "585": {
+    "query": "这有啥意思",
+    "label": "chat"
+  },
+  "586": {
+    "query": "上广州坐车网查一下从这里到大咋地怎么走",
+    "label": "website"
+  },
+  "587": {
+    "query": "可以告诉我你的性别么",
+    "label": "chat"
+  },
+  "588": {
+    "query": "是什么呢",
+    "label": "chat"
+  },
+  "589": {
+    "query": "怎么我问你什么你都不知道",
+    "label": "chat"
+  },
+  "590": {
+    "query": "满意吗",
+    "label": "chat"
+  },
+  "591": {
+    "query": "查下安徽电视台今天节目单",
+    "label": "epg"
+  },
+  "592": {
+    "query": "15号的我愿意",
+    "label": "epg"
+  },
+  "593": {
+    "query": "明天桂林天气如何",
+    "label": "weather"
+  },
+  "594": {
+    "query": "4的平方根的立方加9的2次方根的3次方",
+    "label": "calc"
+  },
+  "595": {
+    "query": "酸菜鱼怎样做",
+    "label": "cookbook"
+  },
+  "596": {
+    "query": "发短信给子健晚上回家吃饭",
+    "label": "message"
+  },
+  "597": {
+    "query": "帮我查一查今天的新闻。",
+    "label": "news"
+  },
+  "598": {
+    "query": "读首唐诗",
+    "label": "poetry"
+  },
+  "599": {
+    "query": "好有爱?",
+    "label": "chat"
+  },
+  "600": {
+    "query": "去红心中路怎么走",
+    "label": "map"
+  },
+  "601": {
+    "query": "下午的日程是什么",
+    "label": "schedule"
+  },
+  "602": {
+    "query": "问题是有些东西你听不懂怎么聊天",
+    "label": "chat"
+  },
+  "603": {
+    "query": "给李慧发个短信说我要回家",
+    "label": "message"
+  },
+  "604": {
+    "query": "爱情片",
+    "label": "video"
+  },
+  "605": {
+    "query": "哪个台播放节目",
+    "label": "epg"
+  },
+  "606": {
+    "query": "打开浦口生活资讯频道",
+    "label": "tvchannel"
+  },
+  "607": {
+    "query": "烧鸭怎么做",
+    "label": "cookbook"
+  },
+  "608": {
+    "query": "把孟蕾的电话发给陈姬",
+    "label": "contacts"
+  },
+  "609": {
+    "query": "我们去爬山怎么样啊",
+    "label": "chat"
+  },
+  "610": {
+    "query": "明天去纽约的航班。",
+    "label": "flight"
+  },
+  "611": {
+    "query": "除了会说这些还会说哪行啊",
+    "label": "chat"
+  },
+  "612": {
+    "query": "查询一下南方航空的股票",
+    "label": "stock"
+  },
+  "613": {
+    "query": "上海到北京怎么走",
+    "label": "map"
+  },
+  "614": {
+    "query": "本期 的大乐透开奖号码",
+    "label": "lottery"
+  },
+  "615": {
+    "query": "帮我查一下明日天气",
+    "label": "weather"
+  },
+  "616": {
+    "query": "你喜欢玩肥皂么？",
+    "label": "chat"
+  },
+  "617": {
+    "query": "中国建设银行的行情",
+    "label": "stock"
+  },
+  "618": {
+    "query": "最近新上映的电视剧。",
+    "label": "video"
+  },
+  "619": {
+    "query": "麻烦您可不可以帮我调频97广西经济广播电台",
+    "label": "radio"
+  },
+  "620": {
+    "query": "谁最聪明",
+    "label": "chat"
+  },
+  "621": {
+    "query": "你是妹妹还是哥哥",
+    "label": "chat"
+  },
+  "622": {
+    "query": "发短信给王曼希望你幸福",
+    "label": "message"
+  },
+  "623": {
+    "query": "用菜籽油做面包",
+    "label": "cookbook"
+  },
+  "624": {
+    "query": "替我回复这封邮件",
+    "label": "email"
+  },
+  "625": {
+    "query": "背唐诗李白侠客行",
+    "label": "poetry"
+  },
+  "626": {
+    "query": "帮忙讲几个谜语给我猜。",
+    "label": "riddle"
+  },
+  "627": {
+    "query": "打给宋成钢",
+    "label": "telephone"
+  },
+  "628": {
+    "query": "海南天气怎么样",
+    "label": "weather"
+  },
+  "629": {
+    "query": "美国电影破碎之城",
+    "label": "video"
+  },
+  "630": {
+    "query": "帮我查一下到狼牙山怎么走",
+    "label": "map"
+  },
+  "631": {
+    "query": "锁梦楼",
+    "label": "video"
+  },
+  "632": {
+    "query": "真的吗",
+    "label": "chat"
+  },
+  "633": {
+    "query": "红烧肉怎么煮啊",
+    "label": "cookbook"
+  },
+  "634": {
+    "query": "什么曰子啊",
+    "label": "chat"
+  },
+  "635": {
+    "query": "拨打幺三九幺三八九九三九九",
+    "label": "telephone"
+  },
+  "636": {
+    "query": "打电话给子明",
+    "label": "telephone"
+  },
+  "637": {
+    "query": "怎样做凉拌？",
+    "label": "cookbook"
+  },
+  "638": {
+    "query": "天才中有什么重大新闻",
+    "label": "chat"
+  },
+  "639": {
+    "query": "今晚看什么电影？",
+    "label": "epg"
+  },
+  "640": {
+    "query": "猜脑筋急转弯二。",
+    "label": "riddle"
+  },
+  "641": {
+    "query": "床英文怎么说",
+    "label": "translation"
+  },
+  "642": {
+    "query": "木瓜汤怎么做",
+    "label": "cookbook"
+  },
+  "643": {
+    "query": "杭州到上海",
+    "label": "map"
+  },
+  "644": {
+    "query": "你知道小黄鸡吗",
+    "label": "chat"
+  },
+  "645": {
+    "query": "几八痒",
+    "label": "chat"
+  },
+  "646": {
+    "query": "查寻三星股价",
+    "label": "stock"
+  },
+  "647": {
+    "query": "给曹广义打电话",
+    "label": "telephone"
+  },
+  "648": {
+    "query": "说个谜语给我猜猜。",
+    "label": "riddle"
+  },
+  "649": {
+    "query": "用电压力锅怎么蒸米粉肉。",
+    "label": "cookbook"
+  },
+  "650": {
+    "query": "做糖醋排骨需要哪些材料呀？",
+    "label": "cookbook"
+  },
+  "651": {
+    "query": "查查科大讯飞在哪儿",
+    "label": "map"
+  },
+  "652": {
+    "query": "打开淘宝购物",
+    "label": "app"
+  },
+  "653": {
+    "query": "查看之丽丽的号码",
+    "label": "contacts"
+  },
+  "654": {
+    "query": "从济源市到河南省电信分公司怎么走",
+    "label": "map"
+  },
+  "655": {
+    "query": "干锅鱼怎么做",
+    "label": "cookbook"
+  },
+  "656": {
+    "query": "我想去上海坐火车得几天",
+    "label": "chat"
+  },
+  "657": {
+    "query": "设置闹钟。",
+    "label": "schedule"
+  },
+  "658": {
+    "query": "早上好英语怎么讲",
+    "label": "translation"
+  },
+  "659": {
+    "query": "现在有什么热点新闻？",
+    "label": "news"
+  },
+  "660": {
+    "query": "车车美么",
+    "label": "chat"
+  },
+  "661": {
+    "query": "发邮件给灿灿说明早我们一起跑步",
+    "label": "email"
+  },
+  "662": {
+    "query": "武汉卓尔的赛程。",
+    "label": "match"
+  },
+  "663": {
+    "query": "3次根号19",
+    "label": "calc"
+  },
+  "664": {
+    "query": "请打开人人网",
+    "label": "website"
+  },
+  "665": {
+    "query": "搜索手机办公软件",
+    "label": "app"
+  },
+  "666": {
+    "query": "给石荣福发短信",
+    "label": "message"
+  },
+  "667": {
+    "query": "我想看电影台北飘雪",
+    "label": "video"
+  },
+  "668": {
+    "query": "么，哥来一下最新的新闻。",
+    "label": "news"
+  },
+  "669": {
+    "query": "给查乐发短信",
+    "label": "message"
+  },
+  "670": {
+    "query": "是啊你说的那几句话到底啥意思",
+    "label": "chat"
+  },
+  "671": {
+    "query": "打电话给幺三七幺零五五二幺九九",
+    "label": "telephone"
+  },
+  "672": {
+    "query": "要啥?",
+    "label": "chat"
+  },
+  "673": {
+    "query": "你怎么认识我的",
+    "label": "chat"
+  },
+  "674": {
+    "query": "今天重大新闻",
+    "label": "news"
+  },
+  "675": {
+    "query": "搜索极品天王",
+    "label": "novel"
+  },
+  "676": {
+    "query": "查一下从广州到南宁的火车票",
+    "label": "train"
+  },
+  "677": {
+    "query": "发送短信给老婆我在三号楼三零幺刚才那个教室关门了",
+    "label": "message"
+  },
+  "678": {
+    "query": "查寻轻舞风股票",
+    "label": "stock"
+  },
+  "679": {
+    "query": "明天安徽卫视演什么",
+    "label": "epg"
+  },
+  "680": {
+    "query": "你是白痴吗",
+    "label": "chat"
+  },
+  "681": {
+    "query": "打豆浆剩下的豆渣怎样做，好吃？",
+    "label": "cookbook"
+  },
+  "682": {
+    "query": "凯立德",
+    "label": "app"
+  },
+  "683": {
+    "query": "导航到奉贤",
+    "label": "map"
+  },
+  "684": {
+    "query": "抽身游戏",
+    "label": "video"
+  },
+  "685": {
+    "query": "我要看功夫熊猫帮我播放出来",
+    "label": "video"
+  },
+  "686": {
+    "query": "酸菜粉条肉的做法。",
+    "label": "cookbook"
+  },
+  "687": {
+    "query": "中山天气怎么样",
+    "label": "weather"
+  },
+  "688": {
+    "query": "你还没有结婚用英语怎么讲",
+    "label": "translation"
+  },
+  "689": {
+    "query": "江苏党校二套",
+    "label": "tvchannel"
+  },
+  "690": {
+    "query": "那给我背静夜思。",
+    "label": "poetry"
+  },
+  "691": {
+    "query": "写短信给颖村",
+    "label": "message"
+  },
+  "692": {
+    "query": "如何治疗脚气",
+    "label": "health"
+  },
+  "693": {
+    "query": "请问鱼块的做法。",
+    "label": "cookbook"
+  },
+  "694": {
+    "query": "你什么意思",
+    "label": "chat"
+  },
+  "695": {
+    "query": "不辣，猜谜语。",
+    "label": "riddle"
+  },
+  "696": {
+    "query": "翻译今天出去玩",
+    "label": "translation"
+  },
+  "697": {
+    "query": "日韩好看的电视剧",
+    "label": "video"
+  },
+  "698": {
+    "query": "美国电影敢死队二",
+    "label": "video"
+  },
+  "699": {
+    "query": "做蛋炒饭需要什么材料？",
+    "label": "cookbook"
+  },
+  "700": {
+    "query": "哪个学校的",
+    "label": "chat"
+  },
+  "701": {
+    "query": "湖北卫视今天下午六点以后开始播男生女生向前冲",
+    "label": "epg"
+  },
+  "702": {
+    "query": "你知道今天南京的天气吗",
+    "label": "weather"
+  },
+  "703": {
+    "query": "哦来一首忘情水",
+    "label": "music"
+  },
+  "704": {
+    "query": "查询合肥市植物园的位置",
+    "label": "map"
+  },
+  "705": {
+    "query": "开网页",
+    "label": "website"
+  },
+  "706": {
+    "query": "我背一首生查子。",
+    "label": "poetry"
+  },
+  "707": {
+    "query": "北京二",
+    "label": "tvchannel"
+  },
+  "708": {
+    "query": "帮忙打开一下酷狗音乐播放音乐行不",
+    "label": "app"
+  },
+  "709": {
+    "query": "十月四号从广州到北京的飞机票多少钱",
+    "label": "flight"
+  },
+  "710": {
+    "query": "幺八九幺八九二二五五五",
+    "label": "telephone"
+  },
+  "711": {
+    "query": "阜阳到温州的航班",
+    "label": "flight"
+  },
+  "712": {
+    "query": "我是不是好没用",
+    "label": "chat"
+  },
+  "713": {
+    "query": "查一下从杭州到上海高铁时刻表",
+    "label": "train"
+  },
+  "714": {
+    "query": "机票",
+    "label": "flight"
+  },
+  "715": {
+    "query": "把刘荣涛的电话发给王华成",
+    "label": "contacts"
+  },
+  "716": {
+    "query": "帮我看下最近有什么好看的电影？",
+    "label": "video"
+  },
+  "717": {
+    "query": "芒果西米露怎么做啊",
+    "label": "cookbook"
+  },
+  "718": {
+    "query": "查询标准股份的股票",
+    "label": "stock"
+  },
+  "719": {
+    "query": "查下最近1周有转播X女特工",
+    "label": "epg"
+  },
+  "720": {
+    "query": "有汽车票吗",
+    "label": "chat"
+  },
+  "721": {
+    "query": "播放2005年励志动漫",
+    "label": "video"
+  },
+  "722": {
+    "query": "打开安徽交通台",
+    "label": "radio"
+  },
+  "723": {
+    "query": "这么逗我好玩是不",
+    "label": "chat"
+  },
+  "724": {
+    "query": "十五分钟之后叫我。",
+    "label": "schedule"
+  },
+  "725": {
+    "query": "今天上证指数是几点",
+    "label": "stock"
+  },
+  "726": {
+    "query": "播放音乐月亮之上的。",
+    "label": "music"
+  },
+  "727": {
+    "query": "我想了解地产板块股票现在怎么样",
+    "label": "stock"
+  },
+  "728": {
+    "query": "童子鸡的做法。",
+    "label": "cookbook"
+  },
+  "729": {
+    "query": "哪个台在放非诚勿扰",
+    "label": "epg"
+  },
+  "730": {
+    "query": "就拉下的饺子怎么做？",
+    "label": "cookbook"
+  },
+  "731": {
+    "query": "放一首青花瓷哦哦",
+    "label": "music"
+  },
+  "732": {
+    "query": "你能给我唱歌吗",
+    "label": "chat"
+  },
+  "733": {
+    "query": "找一下非诚勿扰娱乐节目",
+    "label": "video"
+  },
+  "734": {
+    "query": "给我放一首最炫民族风。",
+    "label": "music"
+  },
+  "735": {
+    "query": "你还会什么古诗",
+    "label": "chat"
+  },
+  "736": {
+    "query": "查询广州到贵港的火车",
+    "label": "train"
+  },
+  "737": {
+    "query": "给爸爸打电话",
+    "label": "telephone"
+  },
+  "738": {
+    "query": "臭豆腐怎么做啊？",
+    "label": "cookbook"
+  },
+  "739": {
+    "query": "是否还有其他关于钓鱼岛的新闻",
+    "label": "news"
+  },
+  "740": {
+    "query": "说到上海了提醒我一下",
+    "label": "schedule"
+  },
+  "741": {
+    "query": "两点半夜鸡叫什么了不少钱包",
+    "label": "chat"
+  },
+  "742": {
+    "query": "你知道现在广东卫视在演什么吗？",
+    "label": "epg"
+  },
+  "743": {
+    "query": "给我看新邮件",
+    "label": "email"
+  },
+  "744": {
+    "query": "最近有啥新鲜事阿",
+    "label": "chat"
+  },
+  "745": {
+    "query": "访问京东商城的网页",
+    "label": "website"
+  },
+  "746": {
+    "query": "从武汉到呼和浩特",
+    "label": "map"
+  },
+  "747": {
+    "query": "把李会计的电话发给小江",
+    "label": "contacts"
+  },
+  "748": {
+    "query": "呦呦鹿鸣的下一句。",
+    "label": "poetry"
+  },
+  "749": {
+    "query": "开启qq",
+    "label": "app"
+  },
+  "750": {
+    "query": "湖北电视台",
+    "label": "tvchannel"
+  },
+  "751": {
+    "query": "我要回复这个邮件",
+    "label": "email"
+  },
+  "752": {
+    "query": "发信息给瀌瀌",
+    "label": "message"
+  },
+  "753": {
+    "query": "啊，社会新闻。",
+    "label": "news"
+  },
+  "754": {
+    "query": "给我背一首诗。",
+    "label": "poetry"
+  },
+  "755": {
+    "query": "湖南卫视有什么节目",
+    "label": "epg"
+  },
+  "756": {
+    "query": "给杨凯发短信",
+    "label": "message"
+  },
+  "757": {
+    "query": "打开新浪网我肏",
+    "label": "website"
+  },
+  "758": {
+    "query": "江苏路红薯粉怎么做好吃？",
+    "label": "cookbook"
+  },
+  "759": {
+    "query": "今日头条新闻。",
+    "label": "news"
+  },
+  "760": {
+    "query": "我要发信息给高鹤航",
+    "label": "message"
+  },
+  "761": {
+    "query": "距离春节还有多久",
+    "label": "datetime"
+  },
+  "762": {
+    "query": "从科大讯飞到天鹅湖怎么走能不走高速",
+    "label": "map"
+  },
+  "763": {
+    "query": "CCTV-12套的节目单",
+    "label": "tvchannel"
+  },
+  "764": {
+    "query": "创元",
+    "label": "stock"
+  },
+  "765": {
+    "query": "给我打开一下qq",
+    "label": "app"
+  },
+  "766": {
+    "query": "汽车英语怎么讲",
+    "label": "translation"
+  },
+  "767": {
+    "query": "百度浏览器打开",
+    "label": "app"
+  },
+  "768": {
+    "query": "晚上8:10的闹钟。",
+    "label": "schedule"
+  },
+  "769": {
+    "query": "看一下今天晚上广西台有没有警戒线？",
+    "label": "epg"
+  }
+}
