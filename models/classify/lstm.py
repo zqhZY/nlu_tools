@@ -56,6 +56,11 @@ class LSTM(BaseModel):
         bar = self.input_encoding_block("encoding_block")
         d2 = _feedforward_block(bar, self.config.dense_size, self.config.n_classes, 'feed_forward', self.config.dropout)
 
+        if self.config.lr_decay:
+            self.lr = tf.train.exponential_decay(learning_rate=self.config.learning_rate, global_step=self.global_step_tensor, decay_steps=self.config.decay_step, decay_rate=0.9, staircase=False)
+        else:
+            self.lr = self.config.learning_rate
+
         with tf.name_scope("loss"):
             if self.config.loss == "mse":
                 self.cost = tf.reduce_mean(tf.losses.mean_squared_error(labels=self.y, predictions=d2))
@@ -63,8 +68,8 @@ class LSTM(BaseModel):
                 self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=self.y, logits=d2))
                 correct_prediction = tf.equal(tf.argmax(d2, 1), tf.argmax(self.y, 1))
                 self.accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-            self.train_step = tf.train.AdamOptimizer(self.config.learning_rate).minimize(self.cost,
-                                                                                         global_step=self.global_step_tensor)
+            self.train_step = tf.train.AdamOptimizer(self.lr).minimize(self.cost,
+                                                                      global_step=self.global_step_tensor)
 
 
     def add_word_embedding(self):

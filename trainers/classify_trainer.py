@@ -65,7 +65,11 @@ class ClassifyTrainer(BaseTrain):
            else:
                feed_dict = {self.model.x: x, self.model.y: y, self.model.is_training: True}
            #feed_dict = {self.model.x1: x1, self.model.x2: x2, self.model.y: y, self.model.is_training: False}
-           loss, acc = self.sess.run([self.model.cost, self.model.accuracy], feed_dict=feed_dict)
+           if self.config.lr_decay:
+               loss, acc, lr = self.sess.run([self.model.cost, self.model.accuracy, self.model.lr], feed_dict=feed_dict)
+               print("lr now is {}".format(lr))
+           else:
+               loss, acc = self.sess.run([self.model.cost, self.model.accuracy], feed_dict=feed_dict)
            losses.append(loss)
            accs.append(acc)
         loss = np.mean(losses)

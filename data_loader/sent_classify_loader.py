@@ -2,6 +2,7 @@ from tensorflow.contrib import learn
 import re
 import numpy as np
 import jieba
+from pypinyin import lazy_pinyin
 
 
 class ClassifyDataGenerator:
@@ -17,7 +18,7 @@ class ClassifyDataGenerator:
 
         # build voc dict
         if self.config.load_voc:
-            self.vocab_processor = learn.preprocessing.VocabularyProcessor.restore(self.config.voc_path)
+            self.vocab_processor = learn.preprocessing.VocabularyProcessor.restore(self.config.word_token_conf.voc_path)
         else:
             self.vocab_processor = learn.preprocessing.VocabularyProcessor(self.config.max_sent_length, min_frequency=self.config.min_frequency, tokenizer_fn=self.jieba_seg)
             self.vocab_processor.fit(self.train_raw + self.dev_raw)
@@ -60,20 +61,35 @@ class ClassifyDataGenerator:
         for doc in docs:
             yield list(jieba.cut(doc))
 
+    def char_seg(self, docs):
+        for doc in docs:
+            yield [c for c in doc]
+
+    def pinyin_seg(self, docs):
+        for doc in docs:
+            yield lazy_pinyin(doc)
+
     def build_data(self):
+        """build data """
+        self.prepare_tokens(self.config.word_token_conf, self.jieba_seg)
+        self.prepare_tokens(self.config.char_token_conf, self.char_seg)
+        self.prepare_tokens(self.config.pinyin_token_conf, self.pinyin_seg)
+        #self.build_tokenize(self.config.max_sent_length, self.config.pinyin_dict_path, self.pinyin_seg)
+
+    def prepare_tokens(self, config, tokenizer):
         """build offline data"""
         # save word processor
         print("fit vocab_processor")
-        self.vocab_processor = learn.preprocessing.VocabularyProcessor(self.config.max_sent_length, min_frequency=self.config.min_frequency, tokenizer_fn=self.jieba_seg)
+        self.vocab_processor = learn.preprocessing.VocabularyProcessor(config.max_sent_length, min_frequency=config.min_frequency, tokenizer_fn=tokenizer)
         self.vocab_processor.fit(self.train_raw + self.dev_raw)
         #self.vocab_processor.save(self.config.voc_path)
         # save word dict
         print("save word dict")
         word_dict = self.vocab_processor.vocabulary_._mapping
-        self.save_dict(word_dict, self.config.word_dict_path)
+        self.save_dict(word_dict, config.dict_path)
         # export trimmed glove vector
         print("export trimmed embedding")
-        self.export_trimmed_glove_vectors(word_dict, self.config.embedding_path, self.config.trimmed_embedding_name, self.config.word_dim)
+        #self.export_trimmed_glove_vectors(word_dict, self.config.embedding_path, self.config.trimmed_embedding_name, self.config.word_dim)
 
     def export_trimmed_glove_vectors(self, vocab, glove_filename, trimmed_filename, dim):
         """Saves glove vectors in numpy array
@@ -199,9 +215,9 @@ class SMPGenerator(ClassifyDataGenerator):
                 tokens = line.strip().split("\t")
                 ids.append([tokens[0]])
                 txs.append(self.data_preproces(tokens[2]))
-                t1_len = len(tokens[2].split())
-                if t1_len > self.config.max_sent_length:
-                    t1_len = self.config.max_sent_length
+                t1_len = len(tokens[2]) # char len
+                #if t1_len > self.config.word_max_sent_length:
+                #    t1_len = self.config.max_sent_length
                 tx_lens.append(t1_len)
                 labels.append(tokens[1])
 
