@@ -35,7 +35,9 @@ def main():
         sess = tf.Session()
     
         # load word2vec
-        config.embedding = data.get_trimmed_glove_vectors() 
+        config.embedding_char = data.get_trimmed_glove_vectors(config.char_token_conf.trimmed_embedding) 
+        config.embedding_word = data.get_trimmed_glove_vectors(config.word_token_conf.trimmed_embedding) 
+        #config.embedding_pinyin = data.get_trimmed_glove_vectors(self.config.pinyin_token_conf.trimmed_embedding) 
 
         model = import_object(config.task_config.name, config)
         # create tensorboard logger

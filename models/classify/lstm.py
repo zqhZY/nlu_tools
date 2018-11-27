@@ -17,7 +17,8 @@ class LSTM(BaseModel):
         """
         self.is_training = tf.placeholder(tf.bool)
         # input 
-        self.x = tf.placeholder(tf.int32, name="X", shape=[None, self.config.max_sent_length])
+        self.x = tf.placeholder(tf.int32, name="X", shape=[None, self.config.word_token_conf.max_sent_length])
+        self.x_char = tf.placeholder(tf.int32, name="X_char", shape=[None, self.config.char_token_conf.max_sent_length])
         self.y = tf.placeholder(tf.float32, shape=[None, self.config.n_classes])
         self.x_mask = tf.placeholder(tf.int32, shape=[None], name="x_actual_len")
         print(self.x_mask)
@@ -27,12 +28,14 @@ class LSTM(BaseModel):
            encoding block
         """
         # build self.embedding
-        self._embedding = self.add_word_embedding()
-        print("embedd shape", self._embedding.shape)
-        self.embed = tf.nn.embedding_lookup(self._embedding, self.x)
+        self._embedding, self._embedding_char = self.add_word_embedding()
+        print("word embedding shape", self._embedding.shape)
+        print("char embedding shape", self._embedding_char.shape)
+        self.embed_word = tf.nn.embedding_lookup(self._embedding, self.x)
+        self.embed = tf.nn.embedding_lookup(self._embedding_char, self.x_char)
         #self.embed1 = tf.nn.dropout(self.embed1, self.config.dropout)
         #self.embed1 = tf.expand_dims(self.embed1, -1)
-        print("word embedd1 shape", self.embed.shape)
+        print("char embedd shape", self.embed.shape)
 
         with tf.variable_scope(scope):
             # a_bar = BiLSTM(a, i) (1)
@@ -81,18 +84,45 @@ class LSTM(BaseModel):
         the correct shape is initialized.
         """
         with tf.variable_scope("words"):
-            if "embedding" not in self.config:
+            if "embedding_word" not in self.config:
                 print("warning: random initialize word embedding...")
                 _word_embedding = tf.get_variable(name="_word_embedding", \
                                                   dtype=tf.float32, \
                                                   shape=[self.config.nwords, self.config.word_dim])
             else:
-                _word_embedding = tf.get_variable( initializer=self.config.embedding,
+                _word_embedding = tf.get_variable( initializer=self.config.embedding_word,
                                                   name="_word_embedding",
                                                   dtype=tf.float32,
                                                   trainable=self.config.train_embedding)
+
+        with tf.variable_scope("chars"):
+            if "embedding_char" not in self.config:
+                print("warning: random initialize char embedding...")
+                _char_embedding = tf.get_variable(name="_char_embedding", \
+                                                  dtype=tf.float32, \
+                                                  shape=[self.config.nwords, self.config.word_dim])
+            else:
+                _char_embedding = tf.get_variable( initializer=self.config.embedding_char,
+                                                  name="_char_embedding",
+                                                  dtype=tf.float32,
+                                                  trainable=self.config.train_embedding)
+        '''
+        with tf.variable_scope("pinyin"):
+            if "pinyin_char" not in self.config:
+                print("warning: random initialize pinyin embedding...")
+                _pinyin_embedding = tf.get_variable(name="_pinyin_embedding", \
+                                                  dtype=tf.float32, \
+                                                  shape=[self.config.nwords, self.config.word_dim])
+            else:
+                _pinyin_embedding = tf.get_variable( initializer=self.config.embedding_pinyin,
+                                                  name="_pinyin_embedding",
+                                                  dtype=tf.float32,
+                                                  trainable=self.config.train_embedding)
+        '''
         print(_word_embedding.shape)
-        return _word_embedding
+        print(_char_embedding.shape)
+        #return _word_embedding, _char_embedding, _pinyin_embedding
+        return _word_embedding, _char_embedding
 
     def init_saver(self):
         # here you initialize the tensorflow saver that will be used in saving the checkpoints.

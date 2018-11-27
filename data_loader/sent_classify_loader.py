@@ -4,6 +4,8 @@ import numpy as np
 import jieba
 from pypinyin import lazy_pinyin
 
+_pad = 0
+_unk = 0
 
 class ClassifyDataGenerator:
     def __init__(self, config):
@@ -20,16 +22,39 @@ class ClassifyDataGenerator:
         if self.config.load_voc:
             self.vocab_processor = learn.preprocessing.VocabularyProcessor.restore(self.config.word_token_conf.voc_path)
         else:
-            self.vocab_processor = learn.preprocessing.VocabularyProcessor(self.config.max_sent_length, min_frequency=self.config.min_frequency, tokenizer_fn=self.jieba_seg)
-            self.vocab_processor.fit(self.train_raw + self.dev_raw)
-            self.vocab_processor.save(self.config.voc_path)
+            #self.vocab_processor = learn.preprocessing.VocabularyProcessor(self.config.max_sent_length, min_frequency=self.config.min_frequency, tokenizer_fn=self.jieba_seg)
+            #self.vocab_processor.fit(self.train_raw + self.dev_raw)
+            #self.vocab_processor.save(self.config.voc_path)
             # save word dict
-            self.save_dict(self.vocab_processor.vocabulary_._mapping, self.config.word_dict_path)
+            #self.save_dict(self.vocab_processor.vocabulary_._mapping, self.config.word_dict_path)
+            self.char_processor = self.prepare_processor(self.config.char_token_conf, self.char_seg, export_vector=False)
+            self.word_processor = self.prepare_processor(self.config.word_token_conf, self.jieba_seg, export_vector=False)
+            self.pinyin_processor = self.prepare_processor(self.config.pinyin_token_conf, self.pinyin_seg, export_vector=False)
+            self.char2ids = self.char_processor.vocabulary_._mapping
+            self.pinyin2ids = self.pinyin_processor.vocabulary_._mapping
+
     
         # transform data to word ids
-        print("vocab size is {}".format(len(self.vocab_processor.vocabulary_)))
-        self.train = np.array(list(self.vocab_processor.transform(self.train_raw)))
-        self.dev = np.array(list(self.vocab_processor.transform(self.dev_raw)))
+        print("vocab size is {}".format(len(self.word_processor.vocabulary_)))
+        self.train = np.array(list(self.word_processor.transform(self.train_raw)))
+        self.dev = np.array(list(self.word_processor.transform(self.dev_raw)))
+
+        # transform data to char ids
+        print("vocab char size is {}".format(len(self.char_processor.vocabulary_)))
+        self.train_char = np.array(list(self.char_processor.transform(self.train_raw)))
+        self.dev_char = np.array(list(self.char_processor.transform(self.dev_raw)))
+        print(self.dev_char)
+  
+        # transform data to char ids
+        print("vocab char size is {}".format(len(self.char_processor.vocabulary_)))
+        self.train_char_ = np.array(list(self.char_transform(self.train_raw)))
+        self.dev_char_ = np.array(list(self.char_transform(self.dev_raw)))
+        print(self.dev_char_)
+
+        # transform data to pinyin ids
+        print("vocab pinyin size is {}".format(len(self.pinyin_processor.vocabulary_)))
+        self.train_pinyin = np.array(list(self.pinyin_processor.transform(self.train_raw)))
+        self.dev_pinyin = np.array(list(self.pinyin_processor.transform(self.dev_raw)))
 
         print("train data num is {}".format(len(self.train)))
         print("dev data num is {}".format(len(self.dev)))
@@ -37,13 +62,13 @@ class ClassifyDataGenerator:
         self.num_batches_per_epoch_dev = int((len(self.dev)-1)/self.config.batch_size) + 1
 
         # build data iter
-        self.train_data_iter = self.batch_iter(list(zip(self.ids_train, self.train, self.labels_train, self.tx_len)), \
+        self.train_data_iter = self.batch_iter(list(zip(self.ids_train, self.train, self.train_char, self.train_pinyin, self.labels_train, self.tx_len)), \
                                                self.config.batch_size, \
                                                self.config.num_epochs, \
                                                self.config.shuffle_data)
 
     def get_dev_iter(self):
-        return self.batch_iter(list(zip(self.ids_dev, self.dev, self.labels_dev, self.tx_len_dev)), \
+        return self.batch_iter(list(zip(self.ids_dev, self.dev, self.dev_char, self.dev_pinyin, self.labels_dev, self.tx_len_dev)), \
                                self.config.batch_size, \
                                1, \
                                False)
@@ -69,27 +94,60 @@ class ClassifyDataGenerator:
         for doc in docs:
             yield lazy_pinyin(doc)
 
+    def word2char_ids(self, word):
+        code = np.zeros([self.config.max_token_length], dtype=np.int32)
+        code[:] = _pad # pad num
+        for i, char in enumerate(word[:self.config.max_token_length]):
+            if char in self.char2ids:
+                code[i] = self.char2ids[char]
+            else:
+                code[i] = _unk # pad num
+        return code
+
+    def encode_chars(self, sentence, split=True):
+        if split:
+            char_ids = [self.word2char_ids(word) for word in sentence.split()]
+        else:
+            char_ids = [self.word2char_ids(word) for word in sentence]
+        return char_ids
+
+    def char_transform(self, docs):
+        n_sentences = len(docs)
+        x_char_ids = np.zeros(
+            (n_sentences, self.config.max_sent_length, self.config.max_token_length),
+            dtype=np.int64
+        )
+        for k, doc in enumerate(docs):
+            sent = list(jieba.cut(doc))
+            length = len(sent)
+            c_ids = self.encode_chars(sent, split=False)
+            x_char_ids[k, :length, :] = c_ids[:self.config.max_sent_length]
+        return x_char_ids
+
     def build_data(self):
         """build data """
-        self.prepare_tokens(self.config.word_token_conf, self.jieba_seg)
-        self.prepare_tokens(self.config.char_token_conf, self.char_seg)
-        self.prepare_tokens(self.config.pinyin_token_conf, self.pinyin_seg)
+        #self.prepare_tokens(self.config.word_token_conf, self.jieba_seg)
+        self.prepare_processor(self.config.char_token_conf, self.char_seg)
+        #self.prepare_tokens(self.config.pinyin_token_conf, self.pinyin_seg)
         #self.build_tokenize(self.config.max_sent_length, self.config.pinyin_dict_path, self.pinyin_seg)
 
-    def prepare_tokens(self, config, tokenizer):
+    def prepare_processor(self, config, tokenizer, export_vector=True):
         """build offline data"""
         # save word processor
         print("fit vocab_processor")
-        self.vocab_processor = learn.preprocessing.VocabularyProcessor(config.max_sent_length, min_frequency=config.min_frequency, tokenizer_fn=tokenizer)
-        self.vocab_processor.fit(self.train_raw + self.dev_raw)
+        print(config)
+        vocab_processor = learn.preprocessing.VocabularyProcessor(config.max_sent_length, min_frequency=config.min_frequency, tokenizer_fn=tokenizer)
+        vocab_processor.fit(self.train_raw + self.dev_raw)
         #self.vocab_processor.save(self.config.voc_path)
         # save word dict
         print("save word dict")
-        word_dict = self.vocab_processor.vocabulary_._mapping
+        word_dict = vocab_processor.vocabulary_._mapping
         self.save_dict(word_dict, config.dict_path)
         # export trimmed glove vector
-        print("export trimmed embedding")
-        #self.export_trimmed_glove_vectors(word_dict, self.config.embedding_path, self.config.trimmed_embedding_name, self.config.word_dim)
+        if export_vector:
+            print("export trimmed embedding")
+            self.export_trimmed_glove_vectors(word_dict, config.embedding_path, config.trimmed_embedding_name, config.word_dim)
+        return vocab_processor
 
     def export_trimmed_glove_vectors(self, vocab, glove_filename, trimmed_filename, dim):
         """Saves glove vectors in numpy array
@@ -112,7 +170,7 @@ class ClassifyDataGenerator:
 
         np.savez_compressed(trimmed_filename, embeddings=embeddings)
 
-    def get_trimmed_glove_vectors(self):
+    def get_trimmed_glove_vectors(self, embedding_file):
         """
         Args:
             filename: path to the npz file
@@ -120,10 +178,10 @@ class ClassifyDataGenerator:
             matrix of embeddings (np array)
         """
         try:
-            with np.load(self.config.trimmed_embedding) as data:
+            with np.load(embedding_file) as data:
                 return np.float32(data["embeddings"])
         except IOError:
-            raise MyIOError(self.config.trimmed_embedding)
+            raise MyIOError(embedding_file)
 
     def get_word_dict(self):
         return self.vocab_processor.vocabulary_._mapping
@@ -144,7 +202,7 @@ class ClassifyDataGenerator:
             onehot = np.zeros((label_num,), dtype=np.int32)
             onehot[label_id-1] = 1
             labels_onehot.append(onehot)
-        return np.array(labels_onehot)      
+        return np.array(labels_onehot)
 
     def load_label_ids(self, filename):
         label_map = {}
@@ -223,3 +281,7 @@ class SMPGenerator(ClassifyDataGenerator):
 
         return ids, txs, labels, np.array(tx_lens, dtype=np.int32)
 
+from tensorflow.contrib import learn
+import re
+import numpy as np
+import jieba

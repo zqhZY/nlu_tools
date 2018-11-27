@@ -4,10 +4,10 @@
     "trainer": "trainers.classify_trainer.ClassifyTrainer",
     "data_generator": "data_loader.sent_classify_loader.SMPGenerator"
   },
-  "exp_name": "smp_lstm_test_lr",
+  "exp_name": "smp_lstm_char_cnn",
   "loss": "softmax",
-  "num_epochs": 2000,
-  "learning_rate": 0.0001,
+  "num_epochs": 3000,
+  "learning_rate": 0.001,
   "lr_decay": false,
   "decay_step": 2000,
   "batch_size": 256,
@@ -18,11 +18,14 @@
   "dense_size": 64, 
   "n_classes": 31,
   "train_embedding": false,
+  "max_sent_length": 26,
+  "max_token_length": 6,
   
-  "load_voc": true,
+  "load_voc": false,
   "using_actual_len": false,
   "word_token_conf":{
     "max_sent_length": 26,
+    "word_dim": 200,
     "min_frequency": 0,
     "embedding_path": "/home/shihui/data/tencent_embed/Tencent_AILab_ChineseEmbedding.txt",
     "trimmed_embedding_name": "../data/smp/trimed_embed_tencent.vec",
@@ -32,10 +35,11 @@
   },
   "char_token_conf":{
     "max_sent_length": 50,
+    "word_dim": 200,
     "min_frequency": 0,
     "embedding_path": "/home/shihui/data/tencent_embed/Tencent_AILab_ChineseEmbedding.txt",
     "trimmed_embedding_name": "../data/smp/trimed_char_embed_tencent.vec",
-    "trimmed_embedding": "../data/smp/trimed__char_embed_tencent.vec.npz",
+    "trimmed_embedding": "../data/smp/trimed_char_embed_tencent.vec.npz",
     "dict_path": "../data/smp/char.dict",
     "voc_path": "../data/smp/vocab_char"
   },
