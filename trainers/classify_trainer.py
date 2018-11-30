@@ -45,9 +45,9 @@ class ClassifyTrainer(BaseTrain):
         _, x, x_char, x_pinyin, y, x_mask= zip(*batch)
         y = np.squeeze(y)
         if self.config.using_actual_len:
-            feed_dict = {self.model.x: x, self.model.x_char: x_char, self.model.y: y, self.model.is_training: True, self.model.x_mask: x_mask}
+            feed_dict = {self.model.x: x, self.model.x_char_cnn: x_char, self.model.x_pinyin: x_pinyin, self.model.y: y, self.model.is_training: True, self.model.x_mask: x_mask}
         else:
-            feed_dict = {self.model.x: x, self.model.x_char: x_char, self.model.y: y, self.model.is_training: True}
+            feed_dict = {self.model.x: x, self.model.x_char_cnn: x_char, self.model.x_pinyin: x_pinyin, self.model.y: y, self.model.is_training: True}
         _, loss, acc = self. sess.run([self.model.train_step, self.model.cost, self.model.accuracy],
                                      feed_dict=feed_dict)
         return loss, acc
@@ -61,9 +61,9 @@ class ClassifyTrainer(BaseTrain):
            _, x, x_char, x_pinyin, y, x_mask = zip(*batch)
            y = np.squeeze(y)
            if self.config.using_actual_len:
-               feed_dict = {self.model.x: x, self.model.x_char: x_char, self.model.y: y, self.model.is_training: True, self.model.x_mask: x_mask}
+               feed_dict = {self.model.x: x, self.model.x_char_cnn: x_char, self.model.x_pinyin: x_pinyin, self.model.y: y, self.model.is_training: True, self.model.x_mask: x_mask}
            else:
-               feed_dict = {self.model.x: x, self.model.x_char: x_char, self.model.y: y, self.model.is_training: True}
+               feed_dict = {self.model.x: x, self.model.x_char_cnn: x_char, self.model.x_pinyin: x_pinyin, self.model.y: y, self.model.is_training: True}
            #feed_dict = {self.model.x1: x1, self.model.x2: x2, self.model.y: y, self.model.is_training: False}
            if self.config.lr_decay:
                loss, acc, lr = self.sess.run([self.model.cost, self.model.accuracy, self.model.lr], feed_dict=feed_dict)
