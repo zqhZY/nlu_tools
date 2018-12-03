@@ -4,9 +4,9 @@
     "trainer": "trainers.classify_trainer.ClassifyTrainer",
     "data_generator": "data_loader.sent_classify_loader.SMPGenerator"
   },
-  "exp_name": "smp_lstm_pinyin_cnn_with_word",
+  "exp_name": "smp_pinyin_cnn_with_word_bilstm",
   "loss": "softmax",
-  "num_epochs": 3000,
+  "num_epochs": 2000,
   "learning_rate": 0.001,
   "lr_decay": false,
   "decay_step": 2000,
@@ -60,6 +60,7 @@
   },
   "train_data": "../data/smp/train_raw.txt",
   "dev_data": "../data/smp/dev_raw.txt",
+  "test_data": "../data/smp/test_raw.txt",
   "label_ids": "../data/smp/label_ids.txt",
   "shuffle_data": true,
 

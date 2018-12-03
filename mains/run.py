@@ -1,5 +1,8 @@
 import tensorflow as tf
 import sys
+import numpy as np
+from sklearn.metrics import accuracy_score, recall_score, f1_score
+
 
 sys.path.extend(['..'])
 
@@ -48,6 +51,29 @@ def main():
         #model.load(sess)
         # here you train your model
         trainer.train()
+    elif args.step == "pred":
+        # create tensorflow session
+        sess = tf.Session()
+        # load word2vec
+        config.embedding_char = data.get_trimmed_glove_vectors(config.char_token_conf.trimmed_embedding) 
+        config.embedding_word = data.get_trimmed_glove_vectors(config.word_token_conf.trimmed_embedding) 
+        # init and load model to pred
+        model = import_object(config.task_config.name, config)
+        model.load(sess)
+
+        test_ids, test_raw, true_labels, _ = data.test_data
+        pred_labels = []
+        for i, text_raw in enumerate(test_raw):
+            x, x_char, x_pinyin = data.pred_process(text_raw)
+            feed_dict = {model.x: x, model.x_char_cnn: x_char, model.x_pinyin: x_pinyin, model.is_training: False}
+            pred = sess.run([model.d2], feed_dict=feed_dict)
+            pred_labels.append(data.id2label[np.argmax(pred[0])])
+        
+        # print acc, recall and f1
+        acc = accuracy_score(true_labels, pred_labels)
+        recall = recall_score(true_labels, pred_labels, average='macro')
+        f1 = f1_score(true_labels, pred_labels, average='micro')
+        print("acc is {}, recall is {}, f1 is {}".format(acc, recall, f1))
     elif args.step == "tune":
 
         import itertools

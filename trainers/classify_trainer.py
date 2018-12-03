@@ -18,6 +18,7 @@ class ClassifyTrainer(BaseTrain):
             self.train_epoch()
             self.sess.run(self.model.increment_cur_epoch_tensor)
             self.eval(cur_epoch)
+            #self.test(cur_epoch)
 
     def train_epoch(self):
         loop = tqdm(range(self.data_loader.num_batches_per_epoch_train))
@@ -38,7 +39,7 @@ class ClassifyTrainer(BaseTrain):
         }
         print("Train- loss:{:.4f}   acc:{:.4f}".format(loss, acc))
         self.logger.summarize(cur_it, summaries_dict=summaries_dict)
-        self.model.save(self.sess)
+        #self.model.save(self.sess)
 
     def train_step(self):
         batch = next(self.data_loader.train_data_iter)
@@ -84,4 +85,36 @@ class ClassifyTrainer(BaseTrain):
         if acc > self.max_acc:
             self.max_acc = acc
             print("epoch-{} new acc value loss:{:.4f}   acc:{:.4f}".format(cur_epoch, loss, self.max_acc))
+            self.test(cur_epoch)
+            self.model.save(self.sess)
+        
+    def test(self, cur_epoch):
+        # load eval data iter
+        eval_data_iter = self.data_loader.get_test_iter()
+        losses = []
+        accs = []
+        for batch in eval_data_iter:
+           _, x, x_char, x_pinyin, y, x_mask = zip(*batch)
+           y = np.squeeze(y)
+           if self.config.using_actual_len:
+               feed_dict = {self.model.x: x, self.model.x_char_cnn: x_char, self.model.x_pinyin: x_pinyin, self.model.y: y, self.model.is_training: True, self.model.x_mask: x_mask}
+           else:
+               feed_dict = {self.model.x: x, self.model.x_char_cnn: x_char, self.model.x_pinyin: x_pinyin, self.model.y: y, self.model.is_training: True}
+           #feed_dict = {self.model.x1: x1, self.model.x2: x2, self.model.y: y, self.model.is_training: False}
+           if self.config.lr_decay:
+               loss, acc, lr = self.sess.run([self.model.cost, self.model.accuracy, self.model.lr], feed_dict=feed_dict)
+               print("lr now is {}".format(lr))
+           else:
+               loss, acc = self.sess.run([self.model.cost, self.model.accuracy], feed_dict=feed_dict)
+           losses.append(loss)
+           accs.append(acc)
+        loss = np.mean(losses)
+        acc = np.mean(accs)
+        summaries_dict = {
+            'test/loss': loss,
+            'test/acc': acc,
+        }
+        cur_it = self.model.global_step_tensor.eval(self.sess)
+        self.logger.summarize(cur_it, summaries_dict=summaries_dict)
+        print("Test-{}  loss:{:.4f}   acc:{:.4f}".format(cur_epoch, loss, acc))
         

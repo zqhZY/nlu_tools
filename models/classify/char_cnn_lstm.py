@@ -24,7 +24,6 @@ class LSTM(BaseModel):
         #self.x_pinyin_cnn = tf.placeholder(tf.int32, name="X_pinyin_cnn", shape=[None, self.config.max_sent_length, self.config.char_cnn.max_token_len])
         self.y = tf.placeholder(tf.float32, shape=[None, self.config.n_classes])
         self.x_mask = tf.placeholder(tf.int32, shape=[None], name="x_actual_len")
-        print(self.x_mask)
 
     def input_encoding_block(self, scope):
         """
@@ -64,8 +63,8 @@ class LSTM(BaseModel):
 
         # build encoding block
         bar = self.input_encoding_block("encoding_block")
-        d2 = _feedforward_block(bar, self.config.dense_size, self.config.n_classes, 'feed_forward', self.config.dropout)
-
+        self.d2 = _feedforward_block(bar, self.config.dense_size, self.config.n_classes, 'feed_forward', self.config.dropout)
+        self.pred = tf.nn.softmax(self.d2)
         if self.config.lr_decay:
             self.lr = tf.train.exponential_decay(learning_rate=self.config.learning_rate, global_step=self.global_step_tensor, decay_steps=self.config.decay_step, decay_rate=0.9, staircase=False)
         else:
@@ -73,10 +72,10 @@ class LSTM(BaseModel):
 
         with tf.name_scope("loss"):
             if self.config.loss == "mse":
-                self.cost = tf.reduce_mean(tf.losses.mean_squared_error(labels=self.y, predictions=d2))
+                self.cost = tf.reduce_mean(tf.losses.mean_squared_error(labels=self.y, predictions=self.d2))
             else:
-                self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=self.y, logits=d2))
-                correct_prediction = tf.equal(tf.argmax(d2, 1), tf.argmax(self.y, 1))
+                self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=self.y, logits=self.d2))
+                correct_prediction = tf.equal(tf.argmax(self.d2, 1), tf.argmax(self.y, 1))
                 self.accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
             self.train_step = tf.train.AdamOptimizer(self.lr).minimize(self.cost,
                                                                       global_step=self.global_step_tensor)

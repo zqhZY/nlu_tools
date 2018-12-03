@@ -13,6 +13,8 @@ class CNN(BaseModel):
 
         # input 
         self.x = tf.placeholder(tf.int32, name="X", shape=[None, self.config.max_sent_length])
+        self.x_char_cnn = tf.placeholder(tf.int32, name="X_char_cnn", shape=[None, self.config.max_sent_length, self.config.char_cnn.max_token_len])
+        self.x_pinyin = tf.placeholder(tf.int32, name="X_pinyin", shape=[None, self.config.max_sent_length, self.config.char_cnn.max_token_len])
         self.y = tf.placeholder(tf.float32, shape=[None, self.config.n_classes])
 
         # build self.embedding
@@ -86,13 +88,13 @@ class CNN(BaseModel):
         the correct shape is initialized.
         """
         with tf.variable_scope("words"):
-            if "embedding" not in self.config:
+            if "embedding_word" not in self.config:
                 print("warning: random initialize word embedding...")
                 _word_embedding = tf.get_variable(name="_word_embedding", \
                                                   dtype=tf.float32, \
                                                   shape=[self.config.nwords, self.config.word_dim])
             else:
-                _word_embedding = tf.get_variable( initializer=self.config.embedding,
+                _word_embedding = tf.get_variable( initializer=self.config.embedding_word,
                                                   name="_word_embedding",
                                                   dtype=tf.float32,
                                                   trainable=self.config.train_embedding)

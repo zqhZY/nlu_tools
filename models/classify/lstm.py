@@ -1,5 +1,5 @@
 from base.base_model import BaseModel
-from models.blocks import _feedforward_block, _bilstm_block 
+from models.blocks import _feedforward_block, _bilstm_block, _build_char_cnn 
 from utils.utils import print_shape
 import tensorflow as tf
 
@@ -18,24 +18,22 @@ class LSTM(BaseModel):
         self.is_training = tf.placeholder(tf.bool)
         # input 
         self.x = tf.placeholder(tf.int32, name="X", shape=[None, self.config.word_token_conf.max_sent_length])
-        self.x_char = tf.placeholder(tf.int32, name="X_char", shape=[None, self.config.char_token_conf.max_sent_length])
+        #self.x_char = tf.placeholder(tf.int32, name="X_char", shape=[None, self.config.char_token_conf.max_sent_length])
+        self.x_char_cnn = tf.placeholder(tf.int32, name="X_char_cnn", shape=[None, self.config.max_sent_length, self.config.char_cnn.max_token_len])
+        self.x_pinyin = tf.placeholder(tf.int32, name="X_pinyin", shape=[None, self.config.max_sent_length, self.config.char_cnn.max_token_len])
+        #self.x_pinyin_cnn = tf.placeholder(tf.int32, name="X_pinyin_cnn", shape=[None, self.config.max_sent_length, self.config.char_cnn.max_token_len])
         self.y = tf.placeholder(tf.float32, shape=[None, self.config.n_classes])
         self.x_mask = tf.placeholder(tf.int32, shape=[None], name="x_actual_len")
-        print(self.x_mask)
 
     def input_encoding_block(self, scope):
         """
            encoding block
         """
         # build self.embedding
-        self._embedding, self._embedding_char = self.add_word_embedding()
+        self._embedding = self.add_word_embedding()
         print("word embedding shape", self._embedding.shape)
-        print("char embedding shape", self._embedding_char.shape)
-        self.embed_word = tf.nn.embedding_lookup(self._embedding, self.x)
-        self.embed = tf.nn.embedding_lookup(self._embedding_char, self.x_char)
-        #self.embed1 = tf.nn.dropout(self.embed1, self.config.dropout)
-        #self.embed1 = tf.expand_dims(self.embed1, -1)
-        print("char embedd shape", self.embed.shape)
+        self.embed = tf.nn.embedding_lookup(self._embedding, self.x)
+        print("embedd shape", self.embed.shape)
 
         with tf.variable_scope(scope):
             # a_bar = BiLSTM(a, i) (1)
@@ -57,8 +55,8 @@ class LSTM(BaseModel):
 
         # build encoding block
         bar = self.input_encoding_block("encoding_block")
-        d2 = _feedforward_block(bar, self.config.dense_size, self.config.n_classes, 'feed_forward', self.config.dropout)
-
+        self.d2 = _feedforward_block(bar, self.config.dense_size, self.config.n_classes, 'feed_forward', self.config.dropout)
+        self.pred = tf.nn.softmax(self.d2)
         if self.config.lr_decay:
             self.lr = tf.train.exponential_decay(learning_rate=self.config.learning_rate, global_step=self.global_step_tensor, decay_steps=self.config.decay_step, decay_rate=0.9, staircase=False)
         else:
@@ -66,10 +64,10 @@ class LSTM(BaseModel):
 
         with tf.name_scope("loss"):
             if self.config.loss == "mse":
-                self.cost = tf.reduce_mean(tf.losses.mean_squared_error(labels=self.y, predictions=d2))
+                self.cost = tf.reduce_mean(tf.losses.mean_squared_error(labels=self.y, predictions=self.d2))
             else:
-                self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=self.y, logits=d2))
-                correct_prediction = tf.equal(tf.argmax(d2, 1), tf.argmax(self.y, 1))
+                self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=self.y, logits=self.d2))
+                correct_prediction = tf.equal(tf.argmax(self.d2, 1), tf.argmax(self.y, 1))
                 self.accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
             self.train_step = tf.train.AdamOptimizer(self.lr).minimize(self.cost,
                                                                       global_step=self.global_step_tensor)
@@ -95,34 +93,7 @@ class LSTM(BaseModel):
                                                   dtype=tf.float32,
                                                   trainable=self.config.train_embedding)
 
-        with tf.variable_scope("chars"):
-            if "embedding_char" not in self.config:
-                print("warning: random initialize char embedding...")
-                _char_embedding = tf.get_variable(name="_char_embedding", \
-                                                  dtype=tf.float32, \
-                                                  shape=[self.config.nwords, self.config.word_dim])
-            else:
-                _char_embedding = tf.get_variable( initializer=self.config.embedding_char,
-                                                  name="_char_embedding",
-                                                  dtype=tf.float32,
-                                                  trainable=self.config.train_embedding)
-        '''
-        with tf.variable_scope("pinyin"):
-            if "pinyin_char" not in self.config:
-                print("warning: random initialize pinyin embedding...")
-                _pinyin_embedding = tf.get_variable(name="_pinyin_embedding", \
-                                                  dtype=tf.float32, \
-                                                  shape=[self.config.nwords, self.config.word_dim])
-            else:
-                _pinyin_embedding = tf.get_variable( initializer=self.config.embedding_pinyin,
-                                                  name="_pinyin_embedding",
-                                                  dtype=tf.float32,
-                                                  trainable=self.config.train_embedding)
-        '''
-        print(_word_embedding.shape)
-        print(_char_embedding.shape)
-        #return _word_embedding, _char_embedding, _pinyin_embedding
-        return _word_embedding, _char_embedding
+        return _word_embedding
 
     def init_saver(self):
         # here you initialize the tensorflow saver that will be used in saving the checkpoints.

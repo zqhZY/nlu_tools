@@ -13,10 +13,13 @@ class ClassifyDataGenerator:
         # load data here
         self.ids_train, self.train_raw, self.labels_train, self.tx_len = self.load_data(self.config.train_data, True)
         self.ids_dev, self.dev_raw, self.labels_dev, self.tx_len_dev = self.load_data(self.config.dev_data, True)
+        self.ids_test, self.test_raw, self.labels_test, self.tx_len_test = self.load_data(self.config.test_data, True)
+        self.test_data = self.load_data(self.config.test_data, True)
 
-        self.label_map = self.load_label_ids(self.config.label_ids)
+        self.label_map, self.id2label = self.load_label_ids(self.config.label_ids)
         self.labels_train = self.label_onehot(self.labels_train, self.label_map)
         self.labels_dev = self.label_onehot(self.labels_dev, self.label_map)
+        self.labels_test = self.label_onehot(self.labels_test, self.label_map)
 
         # build voc dict
         if self.config.load_voc:
@@ -38,26 +41,30 @@ class ClassifyDataGenerator:
         print("vocab size is {}".format(len(self.word_processor.vocabulary_)))
         self.train = np.array(list(self.word_processor.transform(self.train_raw)))
         self.dev = np.array(list(self.word_processor.transform(self.dev_raw)))
+        self.test = np.array(list(self.word_processor.transform(self.test_raw)))
 
         # transform data to char ids
-        print("vocab char size is {}".format(len(self.char_processor.vocabulary_)))
-        self.train_char = np.array(list(self.char_processor.transform(self.train_raw)))
-        self.dev_char = np.array(list(self.char_processor.transform(self.dev_raw)))
-        print(self.dev_char)
+        #print("vocab char size is {}".format(len(self.char_processor.vocabulary_)))
+        #self.train_char = np.array(list(self.char_processor.transform(self.train_raw)))
+        #self.dev_char = np.array(list(self.char_processor.transform(self.dev_raw)))
+        #print(self.dev_char)
   
         # transform data to char ids
+        # [num, max_sent_len, max_token_len]
         print("vocab char size is {}".format(len(self.char_processor.vocabulary_)))
-        self.train_char_ = np.array(list(self.char_transform(self.train_raw)))
-        self.dev_char_ = np.array(list(self.char_transform(self.dev_raw)))
-        print(self.dev_char_)
+        self.train_char = np.array(list(self.char_transform(self.train_raw)))
+        self.dev_char = np.array(list(self.char_transform(self.dev_raw)))
+        self.test_char = np.array(list(self.char_transform(self.test_raw)))
 
         # transform data to pinyin ids
         print("vocab pinyin size is {}".format(len(self.pinyin_processor.vocabulary_)))
-        self.train_pinyin = np.array(list(self.pinyin_processor.transform(self.train_raw)))
-        self.dev_pinyin = np.array(list(self.pinyin_processor.transform(self.dev_raw)))
+        self.train_pinyin = np.array(list(self.char_transform(self.train_raw, is_pinyin=True)))
+        self.dev_pinyin = np.array(list(self.char_transform(self.dev_raw, is_pinyin=True)))
+        self.test_pinyin = np.array(list(self.char_transform(self.test_raw, is_pinyin=True)))
 
         print("train data num is {}".format(len(self.train)))
         print("dev data num is {}".format(len(self.dev)))
+        print("test data num is {}".format(len(self.test)))
         self.num_batches_per_epoch_train = int((len(self.train)-1)/self.config.batch_size) + 1
         self.num_batches_per_epoch_dev = int((len(self.dev)-1)/self.config.batch_size) + 1
 
@@ -67,8 +74,20 @@ class ClassifyDataGenerator:
                                                self.config.num_epochs, \
                                                self.config.shuffle_data)
 
+    def pred_process(self, text):
+        """process for predict pipeline"""
+        word_ids = np.array(list(self.word_processor.transform([text])))
+        char_ids = np.array(list(self.char_transform([text])))
+        pinyin_ids = np.array(list(self.char_transform([text], is_pinyin=True)))
+        return word_ids, char_ids, pinyin_ids
+
     def get_dev_iter(self):
         return self.batch_iter(list(zip(self.ids_dev, self.dev, self.dev_char, self.dev_pinyin, self.labels_dev, self.tx_len_dev)), \
+                               self.config.batch_size, \
+                               1, \
+                               False)
+    def get_test_iter(self):
+        return self.batch_iter(list(zip(self.ids_test, self.test, self.test_char, self.test_pinyin, self.labels_test, self.tx_len_test)), \
                                self.config.batch_size, \
                                1, \
                                False)
@@ -92,26 +111,32 @@ class ClassifyDataGenerator:
 
     def pinyin_seg(self, docs):
         for doc in docs:
-            yield lazy_pinyin(doc)
+            doc_pinyin = [lazy_pinyin(word)[0] for word in doc]
+            yield doc_pinyin
 
-    def word2char_ids(self, word):
+    def word2char_ids(self, word, is_pinyin=False):
+        if is_pinyin:
+            char2ids = self.pinyin2ids
+        else:
+            char2ids = self.char2ids
+        
         code = np.zeros([self.config.max_token_length], dtype=np.int32)
         code[:] = _pad # pad num
         for i, char in enumerate(word[:self.config.max_token_length]):
-            if char in self.char2ids:
-                code[i] = self.char2ids[char]
+            if char in char2ids:
+                code[i] = char2ids[char]
             else:
                 code[i] = _unk # pad num
         return code
 
-    def encode_chars(self, sentence, split=True):
+    def encode_chars(self, sentence, is_pinyin=False, split=True):
         if split:
-            char_ids = [self.word2char_ids(word) for word in sentence.split()]
+            char_ids = [self.word2char_ids(word, is_pinyin) for word in sentence.split()]
         else:
-            char_ids = [self.word2char_ids(word) for word in sentence]
+            char_ids = [self.word2char_ids(word, is_pinyin) for word in sentence]
         return char_ids
 
-    def char_transform(self, docs):
+    def char_transform(self, docs, is_pinyin=False):
         n_sentences = len(docs)
         x_char_ids = np.zeros(
             (n_sentences, self.config.max_sent_length, self.config.max_token_length),
@@ -120,15 +145,14 @@ class ClassifyDataGenerator:
         for k, doc in enumerate(docs):
             sent = list(jieba.cut(doc))
             length = len(sent)
-            c_ids = self.encode_chars(sent, split=False)
+            c_ids = self.encode_chars(sent, split=False, is_pinyin=is_pinyin)
             x_char_ids[k, :length, :] = c_ids[:self.config.max_sent_length]
         return x_char_ids
 
     def build_data(self):
         """build data """
-        #self.prepare_tokens(self.config.word_token_conf, self.jieba_seg)
-        self.prepare_processor(self.config.char_token_conf, self.char_seg)
-        #self.prepare_tokens(self.config.pinyin_token_conf, self.pinyin_seg)
+        self.char_processor = self.prepare_processor(self.config.char_token_conf, self.char_seg)
+        self.word_processor = self.prepare_processor(self.config.word_token_conf, self.jieba_seg)
         #self.build_tokenize(self.config.max_sent_length, self.config.pinyin_dict_path, self.pinyin_seg)
 
     def prepare_processor(self, config, tokenizer, export_vector=True):
@@ -137,7 +161,8 @@ class ClassifyDataGenerator:
         print("fit vocab_processor")
         print(config)
         vocab_processor = learn.preprocessing.VocabularyProcessor(config.max_sent_length, min_frequency=config.min_frequency, tokenizer_fn=tokenizer)
-        vocab_processor.fit(self.train_raw + self.dev_raw)
+        vocab_processor.fit(self.train_raw + self.dev_raw + self.test_data[1])
+        #vocab_processor.fit(self.train_raw + self.dev_raw)
         #self.vocab_processor.save(self.config.voc_path)
         # save word dict
         print("save word dict")
@@ -200,17 +225,19 @@ class ClassifyDataGenerator:
                 print("label should in {}".format(label_map))
             label_id = label_map[label]
             onehot = np.zeros((label_num,), dtype=np.int32)
-            onehot[label_id-1] = 1
+            onehot[label_id] = 1
             labels_onehot.append(onehot)
         return np.array(labels_onehot)
 
     def load_label_ids(self, filename):
         label_map = {}
+        id2label = {}
         with open(filename) as f:
             for line in f:
                 tokens = line.strip().split("\t")
-                label_map[tokens[0]] = int(tokens[1])
-        return label_map
+                label_map[tokens[0]] = int(tokens[1]) - 1
+                id2label[int(tokens[1])-1] = tokens[0]
+        return label_map, id2label
 
     def load_data(self, file_name, with_label=True):
         
