@@ -1,0 +1,46 @@
+{
+  "task_config": {
+    "name": "models.deepmatch.dense_esim.DESIM", 
+    "trainer": "trainers.sent_sem_trainer.SentSemTrainer",
+    "data_generator": "data_loader.sent_sem_loader.ATECGenerator"
+  },
+  "exp_name": "atec_dense_esim",
+  "loss": "softmax",
+  "num_epochs": 100,
+  "num_iter_per_epoch": 30,
+  "learning_rate": 0.001,
+  "batch_size": 64,
+  "max_to_keep":5,
+  "dropout": 0.5,
+  "word_dim": 200,
+  "hidden_size": 128, 
+  "dense_size": 64, 
+  "n_classes": 2,
+  "essemble_feature_size": 128,
+  "train_embedding": false,
+  
+  "load_voc": false,
+  "max_sent_length": 26,
+  "using_actual_len": false,
+  "word_token_conf":{
+    "max_sent_length": 26,
+    "word_dim": 200,
+    "min_frequency": 0,
+    "embedding_path": "/home/shihui/data/tencent_embed/Tencent_AILab_ChineseEmbedding.txt",
+    "trimmed_embedding_name": "../data/atec/trimed_embed_tencent.vec",
+    "trimmed_embedding": "../data/atec/trimed_embed_tencent.vec.npz",
+    "dict_path": "../data/atec/word.dict",
+    "voc_path": "../data/atec/vocab"
+  },
+  "train_data": "../data/atec/atec_train_raw.csv",
+  "dev_data": "../data/atec/atec_valid_raw.csv",
+  "shuffle_data": true,
+
+  "parameter_tune":{
+     "learning_rate": [1.0, 0.1, 0.01, 0.001, 0.0001],
+     "dropout": [0.1, 0.25, 0.4, 0.5, 0.7, 1.0],
+     "filter_sizes": [[2, 3, 4, 5], [1, 2, 3, 4], [2, 3, 4, 5, 6]],
+     "num_filters": [16, 32, 64, 128, 256],
+     "train_embedding": [true, false]
+   }
+}

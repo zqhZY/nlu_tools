@@ -2,7 +2,10 @@ from tensorflow.contrib import learn
 import re
 import numpy as np
 import jieba
+from pypinyin import lazy_pinyin
 
+_pad = 0
+_unk = 0
 
 class SemDataGenerator:
     def __init__(self, config):
@@ -11,29 +14,22 @@ class SemDataGenerator:
         self.ids_train, self.tx1s_train_raw, self.tx2s_train_raw, self.labels_train, self.tx1_len, self.tx2_len = self.load_data(self.config.train_data, True)
         self.ids_dev, self.tx1s_dev_raw, self.tx2s_dev_raw, self.labels_dev, self.tx1_len_dev, self.tx2_len_dev = self.load_data(self.config.dev_data, True)
 
-        # tokenize data
-        #if self.config.tokenized is not True:
-        #    self.tx1s_train_raw = [" ".join(jieba.lcut(x)) for x in self.tx1s_train_raw]
-        #    self.tx2s_train_raw = [" ".join(jieba.lcut(x)) for x in self.tx2s_train_raw]
-        #    self.tx1s_dev_raw = [" ".join(jieba.lcut(x)) for x in self.tx1s_dev_raw]
-        #    self.tx2s_dev_raw = [" ".join(jieba.lcut(x)) for x in self.tx2s_dev_raw]
-
         # build voc dict
         if self.config.load_voc:
-            self.vocab_processor = learn.preprocessing.VocabularyProcessor.restore(self.config.voc_path)
+            self.word_processor = learn.preprocessing.VocabularyProcessor.restore(self.config.word_token_conf.voc_path)
         else:
-            self.vocab_processor = learn.preprocessing.VocabularyProcessor(self.config.max_sent_length, min_frequency=self.config.min_frequency)
-            self.vocab_processor.fit(self.tx1s_train_raw + self.tx2s_train_raw + self.tx1s_dev_raw + self.tx2s_dev_raw)
-            self.vocab_processor.save(self.config.voc_path)
-            # save word dict
-            self.save_word_dict(self.vocab_processor.vocabulary_._mapping)
-    
-        # transform data to word ids
-        print("vocab size is {}".format(len(self.vocab_processor.vocabulary_)))
-        self.tx1s_train = np.array(list(self.vocab_processor.transform(self.tx1s_train_raw)))
-        self.tx2s_train = np.array(list(self.vocab_processor.transform(self.tx2s_train_raw)))
-        self.tx1s_dev = np.array(list(self.vocab_processor.transform(self.tx1s_dev_raw)))
-        self.tx2s_dev = np.array(list(self.vocab_processor.transform(self.tx2s_dev_raw)))
+            #self.char_processor = self.prepare_processor(self.config.char_token_conf, self.char_seg, export_vector=False)
+            self.word_processor = self.prepare_processor(self.config.word_token_conf, None, export_vector=False)
+            #self.pinyin_processor = self.prepare_processor(self.config.pinyin_token_conf, self.pinyin_seg, export_vector=False)
+            #self.char2ids = self.char_processor.vocabulary_._mapping
+            #self.pinyin2ids = self.pinyin_processor.vocabulary_._mapping
+
+		# transform data to word ids
+        print("vocab size is {}".format(len(self.word_processor.vocabulary_)))
+        self.tx1s_train = np.array(list(self.word_processor.transform(self.tx1s_train_raw)))
+        self.tx2s_train = np.array(list(self.word_processor.transform(self.tx2s_train_raw)))
+        self.tx1s_dev = np.array(list(self.word_processor.transform(self.tx1s_dev_raw)))
+        self.tx2s_dev = np.array(list(self.word_processor.transform(self.tx2s_dev_raw)))
 
         print("train data num is {}".format(len(self.tx1s_train)))
         print("dev data num is {}".format(len(self.tx1s_dev)))
@@ -45,16 +41,20 @@ class SemDataGenerator:
                                                self.config.batch_size, \
                                                self.config.num_epochs, \
                                                self.config.shuffle_data)
-        # self.dev_data_iter = self.batch_iter(list(zip(self.ids_dev, self.tx1s_dev, self.tx2s_dev, self.labels_dev)), \
-        #                                      self.config.batch_size, \
-        #                                      self.config.num_epochs, \
-        #                                      False)
 
     def get_dev_iter(self):
         return self.batch_iter(list(zip(self.ids_dev, self.tx1s_dev, self.tx2s_dev, self.labels_dev, self.tx1_len_dev, self.tx2_len_dev)), \
                                self.config.batch_size, \
                                1, \
                                False)
+
+
+    def pred_process(self, text):
+        """process for predict pipeline"""
+        word_ids = np.array(list(self.word_processor.transform([text])))
+        char_ids = np.array(list(self.char_transform([text])))
+        pinyin_ids = np.array(list(self.char_transform([text], is_pinyin=True)))
+        return word_ids, char_ids, pinyin_ids
 
     def data_preproces(self, text):
         pattern = "[,.'\"]"
@@ -65,20 +65,77 @@ class SemDataGenerator:
         text = text.lower()
         return text
 
+    def jieba_seg(self, docs):
+        for doc in docs:
+            yield list(jieba.cut(doc))
+
+    def char_seg(self, docs):
+        for doc in docs:
+            yield [c for c in doc]
+
+    def pinyin_seg(self, docs):
+        for doc in docs:
+            doc_pinyin = [lazy_pinyin(word)[0] for word in doc]
+            yield doc_pinyin
+
+    def word2char_ids(self, word, is_pinyin=False):
+        if is_pinyin:
+            char2ids = self.pinyin2ids
+        else:
+            char2ids = self.char2ids
+        
+        code = np.zeros([self.config.max_token_length], dtype=np.int32)
+        code[:] = _pad # pad num
+        for i, char in enumerate(word[:self.config.max_token_length]):
+            if char in char2ids:
+                code[i] = char2ids[char]
+            else:
+                code[i] = _unk # pad num
+        return code
+
+    def encode_chars(self, sentence, is_pinyin=False, split=True):
+        if split:
+            char_ids = [self.word2char_ids(word, is_pinyin) for word in sentence.split()]
+        else:
+            char_ids = [self.word2char_ids(word, is_pinyin) for word in sentence]
+        return char_ids
+
+    def char_transform(self, docs, is_pinyin=False):
+        n_sentences = len(docs)
+        x_char_ids = np.zeros(
+            (n_sentences, self.config.max_sent_length, self.config.max_token_length),
+            dtype=np.int64
+        )
+        for k, doc in enumerate(docs):
+            sent = list(jieba.cut(doc))
+            length = len(sent)
+            c_ids = self.encode_chars(sent, split=False, is_pinyin=is_pinyin)
+            x_char_ids[k, :length, :] = c_ids[:self.config.max_sent_length]
+        return x_char_ids
+
     def build_data(self):
+        """build data """
+        self.char_processor = self.prepare_processor(self.config.char_token_conf, self.char_seg)
+        self.word_processor = self.prepare_processor(self.config.word_token_conf, self.jieba_seg)
+        #self.build_tokenize(self.config.max_sent_length, self.config.pinyin_dict_path, self.pinyin_seg)
+
+    def prepare_processor(self, config, tokenizer, export_vector=True):
         """build offline data"""
         # save word processor
         print("fit vocab_processor")
-        self.vocab_processor = learn.preprocessing.VocabularyProcessor(self.config.max_sent_length, min_frequency=self.config.min_frequency)
-        self.vocab_processor.fit(self.tx1s_train_raw + self.tx2s_train_raw + self.tx1s_dev_raw + self.tx2s_dev_raw)
-        self.vocab_processor.save(self.config.voc_path)
+        print(config)
+        vocab_processor = learn.preprocessing.VocabularyProcessor(config.max_sent_length, min_frequency=config.min_frequency, tokenizer_fn=tokenizer)
+        vocab_processor.fit(self.tx1s_train_raw + self.tx2s_train_raw + self.tx1s_dev_raw + self.tx2s_dev_raw)
+        
         # save word dict
         print("save word dict")
-        word_dict = self.vocab_processor.vocabulary_._mapping
-        self.save_word_dict(word_dict)
+        word_dict = vocab_processor.vocabulary_._mapping
+        self.save_dict(word_dict, config.dict_path)
         # export trimmed glove vector
-        print("export trimmed embedding")
-        self.export_trimmed_glove_vectors(word_dict, self.config.embedding_path, self.config.trimmed_embedding_name, self.config.word_dim)
+        if export_vector:
+            print("export trimmed embedding")
+            self.export_trimmed_glove_vectors(word_dict, config.embedding_path, config.trimmed_embedding_name, config.word_dim)
+        return vocab_processor
 
     def export_trimmed_glove_vectors(self, vocab, glove_filename, trimmed_filename, dim):
         """Saves glove vectors in numpy array
@@ -101,7 +158,7 @@ class SemDataGenerator:
 
         np.savez_compressed(trimmed_filename, embeddings=embeddings)
 
-    def get_trimmed_glove_vectors(self):
+    def get_trimmed_glove_vectors(self, embedding_file):
         """
         Args:
             filename: path to the npz file
@@ -109,16 +166,16 @@ class SemDataGenerator:
             matrix of embeddings (np array)
         """
         try:
-            with np.load(self.config.trimmed_embedding) as data:
+            with np.load(embedding_file) as data:
                 return np.float32(data["embeddings"])
         except IOError:
-            raise MyIOError(self.config.trimmed_embedding)
+            raise MyIOError(embedding_file)
 
     def get_word_dict(self):
         return self.vocab_processor.vocabulary_._mapping
 
-    def save_word_dict(self, word_dict):
-        with open(self.config.word_dict_path, "w") as f:
+    def save_dict(self, word_dict, save_file):
+        with open(save_file, "w") as f:
             for k, v in word_dict.items():
                 f.write(str(v) + "\t" + k + "\n")
 

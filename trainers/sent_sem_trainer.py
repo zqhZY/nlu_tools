@@ -41,7 +41,7 @@ class SentSemTrainer(BaseTrain):
 
     def train_step(self):
         batch = next(self.data_loader.train_data_iter)
-        _, x1, x2, y = zip(*batch)
+        _, x1, x2, y, tx1_len, tx2_len = zip(*batch)
         y = np.squeeze(y)
         feed_dict = {self.model.x1: x1, self.model.x2: x2, self.model.y: y, self.model.is_training: True}
         _, loss, acc = self. sess.run([self.model.train_step, self.model.cost, self.model.accuracy],
@@ -54,7 +54,8 @@ class SentSemTrainer(BaseTrain):
         losses = []
         accs = []
         for batch in eval_data_iter:
-           _, x1, x2, y = zip(*batch)
+           _, x1, x2, y, tx1_len, tx2_len = zip(*batch)
+           #_, x1, x2, y = zip(*batch)
            y = np.squeeze(y)
            feed_dict = {self.model.x1: x1, self.model.x2: x2, self.model.y: y, self.model.is_training: False}
            loss, acc = self.sess.run([self.model.cost, self.model.accuracy], feed_dict=feed_dict)
