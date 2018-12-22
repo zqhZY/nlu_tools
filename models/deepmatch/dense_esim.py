@@ -142,6 +142,7 @@ class DESIM(BaseModel):
             print_shape('v', v)
             f_out = _feedforward_block(v, self.config.dense_size, self.config.essemble_feature_size, 'feed_forward', self.config.dropout)
             return f_out
+            #return v
 
     def essemble_block(self, layers):
         """
@@ -209,6 +210,7 @@ class DESIM(BaseModel):
         essemble = self.essemble_block([f_layer1, f_layer2, f_layer3])
 
         with tf.variable_scope("output"):
+            #self.pred = _feedforward_block(essemble, self.config.dense_size, self.config.n_classes, 'feed_forward', self.config.dropout)
             self.pred = _feedforward_block(essemble, self.config.dense_size, self.config.n_classes, 'feed_forward', self.config.dropout)
         with tf.name_scope("loss"):
             if self.config.loss == "mse":

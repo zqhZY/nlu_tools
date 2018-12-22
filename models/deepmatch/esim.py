@@ -173,13 +173,13 @@ class ESIM(BaseModel):
         the correct shape is initialized.
         """
         with tf.variable_scope("words"):
-            if "embedding" not in self.config:
+            if "embedding_word" not in self.config:
                 print("warning: random initialize word embedding...")
                 _word_embedding = tf.get_variable(name="_word_embedding", \
                                                   dtype=tf.float32, \
                                                   shape=[self.config.nwords, self.config.word_dim])
             else:
-                _word_embedding = tf.get_variable( initializer=self.config.embedding,
+                _word_embedding = tf.get_variable( initializer=self.config.embedding_word,
                                                   name="_word_embedding",
                                                   dtype=tf.float32,
                                                   trainable=self.config.train_embedding)

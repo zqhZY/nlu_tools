@@ -1,13 +1,12 @@
 {
   "task_config": {
-    "name": "models.esim.ESIM", 
+    "name": "models.deepmatch.esim.ESIM", 
     "trainer": "trainers.sent_sem_trainer.SentSemTrainer",
     "data_generator": "data_loader.sent_sem_loader.ATECGenerator"
   },
   "exp_name": "atec_esim",
   "loss": "softmax",
   "num_epochs": 100,
-  "num_iter_per_epoch": 30,
   "learning_rate": 0.001,
   "batch_size": 256,
   "max_to_keep":5,
@@ -18,15 +17,19 @@
   "n_classes": 2,
   "train_embedding": false,
   
-  "load_voc": true,
+  "load_voc": false,
   "max_sent_length": 26,
   "using_actual_len": false,
-  "min_frequency": 0,
-  "embedding_path": "/home/shihui/data/tencent_embed/Tencent_AILab_ChineseEmbedding.txt",
-  "trimmed_embedding_name": "../data/atec/trimed_embed_tencent.vec",
-  "trimmed_embedding": "../data/atec/trimed_embed_tencent.vec.npz",
-  "voc_path": "../data/atec/vocab",
-  "word_dict_path": "../data/atec/word.dict",
+  "word_token_conf":{
+    "max_sent_length": 26,
+    "word_dim": 200,
+    "min_frequency": 0,
+    "embedding_path": "/home/shihui/data/tencent_embed/Tencent_AILab_ChineseEmbedding.txt",
+    "trimmed_embedding_name": "../data/atec/trimed_embed_tencent.vec",
+    "trimmed_embedding": "../data/atec/trimed_embed_tencent.vec.npz",
+    "dict_path": "../data/atec/word.dict",
+    "voc_path": "../data/atec/vocab"
+  },
   "train_data": "../data/atec/atec_train_raw.csv",
   "dev_data": "../data/atec/atec_valid_raw.csv",
   "shuffle_data": true,
